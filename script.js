@@ -1,5 +1,5 @@
 var activity = document.getElementById("activity");
-var url = `https://api.api-ninjas.com/v1/caloriesburned?activity=${activityName}&duration=60&weight=200`;
+var url = `https://api.api-ninjas.com/v1/caloriesburned?activity=ski&duration=60&weight=200`;
 
 function searchActivity() {
   fetch(url, {
