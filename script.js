@@ -43,3 +43,4 @@ function searchActivity() {
 }
 
 searchActivity();
+console.log("Hello");
