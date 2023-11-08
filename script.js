@@ -1,7 +1,10 @@
 var activity = document.getElementById("activity");
-var url = `https://api.api-ninjas.com/v1/caloriesburned?activity=ski&duration=60&weight=200`;
+var userActivityInput = document.getElementById("userActivity");
+var submitButtonEl = document.getElementById("submitButton");
+
 
 function searchActivity() {
+    var url = `https://api.api-ninjas.com/v1/caloriesburned?activity=ski&duration=60&weight=200`;
   fetch(url, {
     headers: {
       "X-Api-Key": "Wjicx6SkiBem7pplQibm7g==wVPkDcY9lX6RAcn0",
@@ -43,4 +46,12 @@ function searchActivity() {
 }
 
 searchActivity();
-console.log("Hello");
+
+submitButtonEl.addEventListener("click", function(event){
+    event.preventDefault();
+    console.log("Clicked");
+    // userActivityInput.value;
+    console.log(userActivityInput.value);
+
+})
+
