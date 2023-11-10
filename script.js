@@ -37,7 +37,7 @@ activityList();
 // Step 3- user inputs weight
 // step 2 and 3 data weight and activity -- use api cal lto api ninjas -- trying to get the number of cals burned / min based on user's weight and selected activity
 
-//MONDAY PLAN: RECIPE API SET UP + DISPLAY 
+//MONDAY PLAN: RECIPE API SET UP + DISPLAY
 //SET VALUE PRE-POPULATED SHORT
 var selectedActivity = userActivitySelect.value;
 var userWeight = userWeightInput.value;
@@ -47,7 +47,7 @@ function allInputs() {
   // get recipe cals from api call
 
   // api call to get cals burned per min for the selected activity
- 
+
   var url = `https://api.api-ninjas.com/v1/caloriesburned?activity=${activity}&duration=60&weight=${userWeight}`;
   fetch(url, {
     headers: {
@@ -78,8 +78,6 @@ function allInputs() {
           resultEl.appendChild(calorieEl);
         }
       }
-
-    
 
       //   .catch(function (error) {
       //     console.error('error:', error);
@@ -150,9 +148,25 @@ submitActivityButtonEl.addEventListener("click", function (event) {
   allInputs();
 });
 
+var recipeIdTest = "716429";
 
+function searchRecipes(recipeId) {
+  var url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3&includeNutrition=true&findByNutrients?minCarbs=10&maxCarbs=50&number=5`;
+  fetch(url, {
+    headers: {
+      // "X-Api-Key": "Wjicx6SkiBem7pplQibm7g==wVPkDcY9lX6RAcn0",
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+    });
+}
 
-
+searchRecipes(recipeIdTest);
 
 // var selectedActivity = document.getElementById('activitySelect').val;
 // var duration = durationInput.value.trim();
