@@ -3,10 +3,20 @@ var userActivityInput = document.getElementById("userActivity");
 var submitButtonEl = document.getElementById("submitButton");
 var userActivitySelect = document.getElementById("activitySelect");
 var submitActivityButtonEl = document.getElementById("activitySubmitButton");
+var submitRecipeButtonEl = document.getElementById("recipeSubmitButton");
 var userWeightInput = document.getElementById("weight");
 // var durationEl = document.getElementById("duration");
 var resultEl = document.getElementById("result");
 var calories = 1000;
+var recipeSelect = document.getElementById("recipeSelect");
+
+// step 1- user selects recipe, user gets # of calories needed to be burned - api spoon
+// Step 2- user selects activity type from drop down list
+// Step 3- user inputs weight
+// step 2 and 3 data weight and activity -- use api cal lto api ninjas -- trying to get the number of cals burned / min based on user's weight and selected activity
+
+//MONDAY PLAN: RECIPE API SET UP + DISPLAY
+//SET VALUE PRE-POPULATED SHORT
 
 function activityList() {
   var listUrl = `https://api.api-ninjas.com/v1/caloriesburnedactivities`;
@@ -32,13 +42,78 @@ function activityList() {
 
 activityList();
 
-// step 1- user selects recipe, user gets # of calories needed to be burned - api spoon
-// Step 2- user selects activity type from drop down list
-// Step 3- user inputs weight
-// step 2 and 3 data weight and activity -- use api cal lto api ninjas -- trying to get the number of cals burned / min based on user's weight and selected activity
+var recipeIdTest = "716429"; //need to find correct ID
 
-//MONDAY PLAN: RECIPE API SET UP + DISPLAY
-//SET VALUE PRE-POPULATED SHORT
+function searchRecipes(recipeId) {
+  var apiKey = "63c92a06cbdb4547b9f28e0fcbc3c5c3";
+  var url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3&includeNutrition=true&findByNutrients?minCarbs=10&maxCarbs=50&number=5`;
+
+  fetch(url, {
+    headers: {
+      // "X-Api-Key": "Wjicx6SkiBem7pplQibm7g==wVPkDcY9lX6RAcn0",
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+    });
+}
+
+async function searchRecipesByQuery(query) {
+  var apiKey = "63c92a06cbdb4547b9f28e0fcbc3c5c3";
+  var url = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3`;
+  var pastaResponse = {
+    results: [
+      {
+        id: 654959,
+        title: "Pasta With Tuna",
+        image: "https://spoonacular.com/recipeImages/654959-312x231.jpg",
+        imageType: "jpg",
+      },
+      {
+        id: 511728,
+        title: "Pasta Margherita",
+        image: "https://spoonacular.com/recipeImages/511728-312x231.jpg",
+        imageType: "jpg",
+      },
+      {
+        id: 654857,
+        title: "Pasta On The Border",
+        image: "https://spoonacular.com/recipeImages/654857-312x231.jpg",
+        imageType: "jpg",
+      },
+    ],
+  };
+
+  return fetch(url, {
+    headers: {
+      // "X-Api-Key": apiKey,
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (response) {
+      // receive a cors response, using a cors policy plugin does not resolve the issue
+      // return response.json();
+      // this api doesn't have calorie results which is problem
+      return pastaResponse;
+    })
+    .catch(function (response) {
+      console.log(
+        "something went wrong but we're going to ignore that and run like it didn't"
+      );
+      return pastaResponse;
+    });
+}
+
+// Create a dropdown with recipe name and the recipe id as the value.
+// Wherever the activity api is called / wherever the function is called after you hit submit, place your function there.
+// Pass form input value (recipe id/field) to your function.
+
+searchRecipes(recipeIdTest);
+
 var selectedActivity = userActivitySelect.value;
 var userWeight = userWeightInput.value;
 
@@ -134,39 +209,45 @@ function searchActivityData(userInput) {
     });
 }
 
-submitButtonEl.addEventListener("click", function (event) {
-  event.preventDefault();
-  console.log("Clicked");
-  // userActivityInput.value;
-  var userInput = userActivityInput.value;
-  searchActivityData(userInput);
-});
+// submit button on click
+// submitButtonEl.addEventListener("click", function (event) {
+//   event.preventDefault();
+//   console.log("Clicked");
+//   // userActivityInput.value;
+//   var userInput = userActivityInput.value;
+//   searchActivityData(userInput);
+// });
 
+// submit activity button on click
 submitActivityButtonEl.addEventListener("click", function (event) {
   event.preventDefault();
   console.log("Submit Activity");
   allInputs();
 });
 
-var recipeIdTest = "716429";
-
-function searchRecipes(recipeId) {
-  var url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3&includeNutrition=true&findByNutrients?minCarbs=10&maxCarbs=50&number=5`;
-  fetch(url, {
-    headers: {
-      // "X-Api-Key": "Wjicx6SkiBem7pplQibm7g==wVPkDcY9lX6RAcn0",
-      "Content-Type": "application/json",
-    },
-  })
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-    });
+function appendRecipeResults(recipeResultsEl, recipes) {
+  recipes.forEach(function (recipe) {
+    recipeEl = document.createElement("div");
+    recipeEl.innerHTML = `
+      <div><b>${recipe.title}</b></div>
+      <img src="${recipe.image}">
+    `;
+    recipeResultsEl.appendChild(recipeEl);
+  });
 }
 
-searchRecipes(recipeIdTest);
+// submit recipe button on click
+submitRecipeButtonEl.addEventListener("click", function (event) {
+  event.preventDefault();
+  console.log("Submitted Recipe");
+
+  var recipeQuery = document.getElementById("recipeInput").value;
+
+  searchRecipesByQuery(recipeQuery).then(function (recipes) {
+    recipeResultsEl = document.getElementById("recipeResults");
+    appendRecipeResults(recipeResultsEl, recipes.results);
+  });
+});
 
 // var selectedActivity = document.getElementById('activitySelect').val;
 // var duration = durationInput.value.trim();
