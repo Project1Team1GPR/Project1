@@ -65,47 +65,27 @@ function searchRecipes(recipeId) {
 async function searchRecipesByQuery(query) {
   var apiKey = "63c92a06cbdb4547b9f28e0fcbc3c5c3";
   var url = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3`;
-  var pastaResponse = {
-    results: [
-      {
-        id: 654959,
-        title: "Pasta With Tuna",
-        image: "https://spoonacular.com/recipeImages/654959-312x231.jpg",
-        imageType: "jpg",
-      },
-      {
-        id: 511728,
-        title: "Pasta Margherita",
-        image: "https://spoonacular.com/recipeImages/511728-312x231.jpg",
-        imageType: "jpg",
-      },
-      {
-        id: 654857,
-        title: "Pasta On The Border",
-        image: "https://spoonacular.com/recipeImages/654857-312x231.jpg",
-        imageType: "jpg",
-      },
-    ],
-  };
 
-  return fetch(url, {
+  const response = await fetch(url);
+  const data = await response.json();
+
+  for (let i = 0; i < data.results.length; i++) {
+    let id = data.results[i].id;
+    const data2 = getCaloriesByRecipeId(id);
+  }
+}
+
+async function getCaloriesByRecipeId(id) {
+  var nutritionUrl = `https://api.spoonacular.com/recipes/${id}/nutritionWidget.json`;
+  const response2 = await fetch(nutritionUrl, {
+    method: "GET",
     headers: {
-      // "X-Api-Key": apiKey,
-      "Content-Type": "application/json",
+      "x-api-key": "63c92a06cbdb4547b9f28e0fcbc3c5c3",
     },
-  })
-    .then(function (response) {
-      // receive a cors response, using a cors policy plugin does not resolve the issue
-      // return response.json();
-      // this api doesn't have calorie results which is problem
-      return pastaResponse;
-    })
-    .catch(function (response) {
-      console.log(
-        "something went wrong but we're going to ignore that and run like it didn't"
-      );
-      return pastaResponse;
-    });
+  });
+  const data2 = await response2.json();
+
+  console.log(data2.calories + "calories");
 }
 
 // Create a dropdown with recipe name and the recipe id as the value.
