@@ -44,23 +44,6 @@ activityList();
 
 var recipeIdTest = "716429"; //need to find correct ID
 
-function searchRecipes(recipeId) {
-  var apiKey = "63c92a06cbdb4547b9f28e0fcbc3c5c3";
-  var url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3&includeNutrition=true&findByNutrients?minCarbs=10&maxCarbs=50&number=5`;
-
-  fetch(url, {
-    headers: {
-      // "X-Api-Key": "Wjicx6SkiBem7pplQibm7g==wVPkDcY9lX6RAcn0",
-      "Content-Type": "application/json",
-    },
-  })
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-    });
-}
 
 async function searchRecipesByQuery(query) {
   var apiKey = "63c92a06cbdb4547b9f28e0fcbc3c5c3";
@@ -92,7 +75,6 @@ async function getCaloriesByRecipeId(id) {
 // Wherever the activity api is called / wherever the function is called after you hit submit, place your function there.
 // Pass form input value (recipe id/field) to your function.
 
-searchRecipes(recipeIdTest);
 
 var selectedActivity = userActivitySelect.value;
 var userWeight = userWeightInput.value;
