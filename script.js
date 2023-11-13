@@ -3,10 +3,20 @@ var userActivityInput = document.getElementById("userActivity");
 var submitButtonEl = document.getElementById("submitButton");
 var userActivitySelect = document.getElementById("activitySelect");
 var submitActivityButtonEl = document.getElementById("activitySubmitButton");
+var submitRecipeButtonEl = document.getElementById("recipeSubmitButton");
 var userWeightInput = document.getElementById("weight");
 // var durationEl = document.getElementById("duration");
 var resultEl = document.getElementById("result");
 var calories = 1000;
+var recipeSelect = document.getElementById("recipeSelect");
+
+// step 1- user selects recipe, user gets # of calories needed to be burned - api spoon
+// Step 2- user selects activity type from drop down list
+// Step 3- user inputs weight
+// step 2 and 3 data weight and activity -- use api cal lto api ninjas -- trying to get the number of cals burned / min based on user's weight and selected activity
+
+//MONDAY PLAN: RECIPE API SET UP + DISPLAY
+//SET VALUE PRE-POPULATED SHORT
 
 function activityList() {
   var listUrl = `https://api.api-ninjas.com/v1/caloriesburnedactivities`;
@@ -32,13 +42,53 @@ function activityList() {
 
 activityList();
 
-// step 1- user selects recipe, user gets # of calories needed to be burned - api spoon
-// Step 2- user selects activity type from drop down list
-// Step 3- user inputs weight
-// step 2 and 3 data weight and activity -- use api cal lto api ninjas -- trying to get the number of cals burned / min based on user's weight and selected activity
+var recipeIdTest = "716429"; //need to find correct ID
 
-//MONDAY PLAN: RECIPE API SET UP + DISPLAY 
-//SET VALUE PRE-POPULATED SHORT
+async function searchRecipesByQuery(query) {
+  var apiKey = "63c92a06cbdb4547b9f28e0fcbc3c5c3";
+  var url = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3`;
+
+  const response = await fetch(url);
+  let data = await response.json();
+
+  for (let i = 0; i < data.results.length; i++) {
+    let id = data.results[i].id;
+    const data2 = await getCaloriesByRecipeId(id);
+    console.log(data2);
+    data.results[i].calories = data2.calories;
+  }
+  return data;
+}
+
+async function getCaloriesByRecipeId(id) {
+  var nutritionUrl = `https://api.spoonacular.com/recipes/${id}/nutritionWidget.json`;
+  const response2 = await fetch(nutritionUrl, {
+    method: "GET",
+    headers: {
+      "x-api-key": "63c92a06cbdb4547b9f28e0fcbc3c5c3",
+    },
+  });
+  const data2 = await response2.json();
+
+  console.log(data2.calories + "calories");
+
+  return data2;
+}
+
+// attempting to get calories displayed on screen
+// async function getCaloriesByRecipeId(id) {
+//   var nutritionUrl = `https://api.spoonacular.com/recipes/${id}/nutritionWidget.json?apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3`;
+
+//   try {
+//     const response = await fetch(nutritionUrl);
+//     const data = await response.json();
+//     return data.calories;
+//   } catch (error) {
+//     console.error("error fetching nutrition information:", error);
+//     return "no data";
+//   }
+// }
+
 var selectedActivity = userActivitySelect.value;
 var userWeight = userWeightInput.value;
 
@@ -47,7 +97,7 @@ function allInputs() {
   // get recipe cals from api call
 
   // api call to get cals burned per min for the selected activity
- 
+
   var url = `https://api.api-ninjas.com/v1/caloriesburned?activity=${activity}&duration=60&weight=${userWeight}`;
   fetch(url, {
     headers: {
@@ -78,8 +128,6 @@ function allInputs() {
           resultEl.appendChild(calorieEl);
         }
       }
-
-    
 
       //   .catch(function (error) {
       //     console.error('error:', error);
@@ -136,23 +184,48 @@ function searchActivityData(userInput) {
     });
 }
 
-submitButtonEl.addEventListener("click", function (event) {
-  event.preventDefault();
-  console.log("Clicked");
-  // userActivityInput.value;
-  var userInput = userActivityInput.value;
-  searchActivityData(userInput);
-});
+// submit button on click
+// submitButtonEl.addEventListener("click", function (event) {
+//   event.preventDefault();
+//   console.log("Clicked");
+//   // userActivityInput.value;
+//   var userInput = userActivityInput.value;
+//   searchActivityData(userInput);
+// });
 
+// submit activity button on click
 submitActivityButtonEl.addEventListener("click", function (event) {
   event.preventDefault();
   console.log("Submit Activity");
   allInputs();
 });
 
+function appendRecipeResults(recipeResultsEl, recipes) {
+  recipes.forEach(function (recipe) {
+    recipeEl = document.createElement("div");
+    recipeEl.innerHTML = `
+      <div><b>${recipe.title}</b></div>
+      <img src="${recipe.image}">
+      <p>${recipe.calories}</p>
+    `;
+    recipeResultsEl.appendChild(recipeEl);
+    console.log(recipe);
+  });
+}
 
+// submit recipe button on click
+submitRecipeButtonEl.addEventListener("click", function (event) {
+  event.preventDefault();
+  console.log("Submitted Recipe");
 
+  var recipeQuery = document.getElementById("recipeInput").value;
 
+  searchRecipesByQuery(recipeQuery).then(function (recipes) {
+    recipeResultsEl = document.getElementById("recipeResults");
+    appendRecipeResults(recipeResultsEl, recipes.results);
+    console.log(recipes);
+  });
+});
 
 // var selectedActivity = document.getElementById('activitySelect').val;
 // var duration = durationInput.value.trim();
