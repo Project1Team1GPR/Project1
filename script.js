@@ -49,11 +49,13 @@ async function searchRecipesByQuery(query) {
   var url = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3`;
 
   const response = await fetch(url);
-  const data = await response.json();
+  let data = await response.json();
 
   for (let i = 0; i < data.results.length; i++) {
     let id = data.results[i].id;
-    const data2 = getCaloriesByRecipeId(id);
+    const data2 = await getCaloriesByRecipeId(id);
+    console.log(data2);
+    data.results[i].calories = data2.calories;
   }
   return data;
 }
@@ -69,11 +71,23 @@ async function getCaloriesByRecipeId(id) {
   const data2 = await response2.json();
 
   console.log(data2.calories + "calories");
+
+  return data2;
 }
 
-// Create a dropdown with recipe name and the recipe id as the value.
-// Wherever the activity api is called / wherever the function is called after you hit submit, place your function there.
-// Pass form input value (recipe id/field) to your function.
+// attempting to get calories displayed on screen
+// async function getCaloriesByRecipeId(id) {
+//   var nutritionUrl = `https://api.spoonacular.com/recipes/${id}/nutritionWidget.json?apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3`;
+
+//   try {
+//     const response = await fetch(nutritionUrl);
+//     const data = await response.json();
+//     return data.calories;
+//   } catch (error) {
+//     console.error("error fetching nutrition information:", error);
+//     return "no data";
+//   }
+// }
 
 var selectedActivity = userActivitySelect.value;
 var userWeight = userWeightInput.value;
@@ -192,8 +206,10 @@ function appendRecipeResults(recipeResultsEl, recipes) {
     recipeEl.innerHTML = `
       <div><b>${recipe.title}</b></div>
       <img src="${recipe.image}">
+      <p>${recipe.calories}</p>
     `;
     recipeResultsEl.appendChild(recipeEl);
+    console.log(recipe);
   });
 }
 
@@ -207,6 +223,7 @@ submitRecipeButtonEl.addEventListener("click", function (event) {
   searchRecipesByQuery(recipeQuery).then(function (recipes) {
     recipeResultsEl = document.getElementById("recipeResults");
     appendRecipeResults(recipeResultsEl, recipes.results);
+    console.log(recipes);
   });
 });
 
