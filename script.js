@@ -44,7 +44,6 @@ activityList();
 
 var recipeIdTest = "716429"; //need to find correct ID
 
-
 async function searchRecipesByQuery(query) {
   var apiKey = "63c92a06cbdb4547b9f28e0fcbc3c5c3";
   var url = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3`;
@@ -56,6 +55,7 @@ async function searchRecipesByQuery(query) {
     let id = data.results[i].id;
     const data2 = getCaloriesByRecipeId(id);
   }
+  return data;
 }
 
 async function getCaloriesByRecipeId(id) {
@@ -74,7 +74,6 @@ async function getCaloriesByRecipeId(id) {
 // Create a dropdown with recipe name and the recipe id as the value.
 // Wherever the activity api is called / wherever the function is called after you hit submit, place your function there.
 // Pass form input value (recipe id/field) to your function.
-
 
 var selectedActivity = userActivitySelect.value;
 var userWeight = userWeightInput.value;
