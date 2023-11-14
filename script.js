@@ -15,8 +15,125 @@ var recipeSelect = document.getElementById("recipeSelect");
 // Step 3- user inputs weight
 // step 2 and 3 data weight and activity -- use api cal lto api ninjas -- trying to get the number of cals burned / min based on user's weight and selected activity
 
-//MONDAY PLAN: RECIPE API SET UP + DISPLAY
-//SET VALUE PRE-POPULATED SHORT
+// Update Project Flow
+// 1. Collect User Info - profile should welcome user back or give option to update user info
+// 2. Search for recipe
+// 3. Select recipe
+// 4. take total cals from selected recipe to help determine total duration of selected activity
+
+// delete
+// var recipeIdTest = "716429"; //need to find correct ID
+
+async function searchRecipesByQuery(query) {
+  var apiKey = "63c92a06cbdb4547b9f28e0fcbc3c5c3";
+  var url = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=5&apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3`;
+
+  const response = await fetch(url);
+  let data = await response.json();
+
+  for (let i = 0; i < data.results.length; i++) {
+    let id = data.results[i].id;
+    const nutritionData = await getCaloriesByRecipeId(id);
+    console.log(nutritionData);
+    data.results[i].calories = nutritionData.calories;
+  }
+  return data;
+}
+
+async function getCaloriesByRecipeId(id) {
+  var nutritionUrl = `https://api.spoonacular.com/recipes/${id}/nutritionWidget.json`;
+  const response2 = await fetch(nutritionUrl, {
+    method: "GET",
+    headers: {
+      "x-api-key": "63c92a06cbdb4547b9f28e0fcbc3c5c3",
+    },
+  });
+  const nutritionData = await response2.json();
+  console.log(nutritionData);
+  console.log(nutritionData.calories + "calories");
+
+  return nutritionData;
+}
+function appendRecipeResults(recipeResultsEl, recipes) {
+  recipes.forEach(function (recipe) {
+    console.log(recipe);
+    var recipeEl = document.createElement("div");
+    recipeEl.innerHTML = `
+    <div><b>${recipe.title}</b></div>
+      <img src="${recipe.image}">
+      <p>Total Calories: ${recipe.calories}</p>
+      <button data-id="${recipe.id}">Ingrediens</button>
+      <div data-ingr="${recipe.id}" id="recipeIngredientList"></div>
+      `;
+
+    recipeResultsEl.appendChild(recipeEl);
+    console.log(recipe);
+  });
+}
+
+// convert ingredient amount to fractions
+function displayIngredientsList(ingredients, recipeId) {
+  console.log(ingredients.ingredients);
+  var ingredientListEl = $(`[data-ingr='${recipeId}']`);
+  var ul = document.createElement("ul");
+  ingredients.ingredients.forEach((ingredient) => {
+    var li = document.createElement("li");
+    li.textContent = `${ingredient.amount} ${ingredient.unit} ${ingredient.name}`;
+    ul.appendChild(li);
+  });
+  ingredientListEl.append(ul);
+}
+
+// event listener for ingredients
+// find a way to consolidate this function & getCaloriesByRecipeId!! CLEAN UP
+$("#recipeResults").on("click", "button", async function (event) {
+  var recipeId = $(event.target).data("id");
+  console.log(recipeId);
+  var ingredients = await getIngredientsById(recipeId);
+  // console.log(ingredients.ingredients);
+  displayIngredientsList(ingredients, recipeId);
+});
+
+async function getIngredientsById(id) {
+  var nutritionUrl = `https://api.spoonacular.com/recipes/${id}/nutritionWidget.json`;
+  const response2 = await fetch(nutritionUrl, {
+    method: "GET",
+    headers: {
+      "x-api-key": "63c92a06cbdb4547b9f28e0fcbc3c5c3",
+    },
+  });
+  const nutritionData = await response2.json();
+
+  return nutritionData;
+}
+
+// submit recipe button on click
+submitRecipeButtonEl.addEventListener("click", function (event) {
+  event.preventDefault();
+  console.log("Submitted Recipe");
+
+  var recipeQuery = document.getElementById("recipeInput").value;
+
+  searchRecipesByQuery(recipeQuery).then(function (recipes) {
+    recipeResultsEl = document.getElementById("recipeResults");
+    appendRecipeResults(recipeResultsEl, recipes.results);
+    console.log(recipes);
+  });
+});
+
+// attempting to get calories displayed on screen
+// async function getCaloriesByRecipeId(id) {
+//   var nutritionUrl = `https://api.spoonacular.com/recipes/${id}/nutritionWidget.json?apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3`;
+
+//   try {
+//     const response = await fetch(nutritionUrl);
+//     const data = await response.json();
+//     return data.calories;
+//   } catch (error) {
+//     console.error("error fetching nutrition information:", error);
+//     return "no data";
+//   }
+// }
 
 function activityList() {
   var listUrl = `https://api.api-ninjas.com/v1/caloriesburnedactivities`;
@@ -41,53 +158,6 @@ function activityList() {
 }
 
 activityList();
-
-var recipeIdTest = "716429"; //need to find correct ID
-
-async function searchRecipesByQuery(query) {
-  var apiKey = "63c92a06cbdb4547b9f28e0fcbc3c5c3";
-  var url = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3`;
-
-  const response = await fetch(url);
-  let data = await response.json();
-
-  for (let i = 0; i < data.results.length; i++) {
-    let id = data.results[i].id;
-    const data2 = await getCaloriesByRecipeId(id);
-    console.log(data2);
-    data.results[i].calories = data2.calories;
-  }
-  return data;
-}
-
-async function getCaloriesByRecipeId(id) {
-  var nutritionUrl = `https://api.spoonacular.com/recipes/${id}/nutritionWidget.json`;
-  const response2 = await fetch(nutritionUrl, {
-    method: "GET",
-    headers: {
-      "x-api-key": "63c92a06cbdb4547b9f28e0fcbc3c5c3",
-    },
-  });
-  const data2 = await response2.json();
-
-  console.log(data2.calories + "calories");
-
-  return data2;
-}
-
-// attempting to get calories displayed on screen
-// async function getCaloriesByRecipeId(id) {
-//   var nutritionUrl = `https://api.spoonacular.com/recipes/${id}/nutritionWidget.json?apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3`;
-
-//   try {
-//     const response = await fetch(nutritionUrl);
-//     const data = await response.json();
-//     return data.calories;
-//   } catch (error) {
-//     console.error("error fetching nutrition information:", error);
-//     return "no data";
-//   }
-// }
 
 var selectedActivity = userActivitySelect.value;
 var userWeight = userWeightInput.value;
@@ -199,91 +269,3 @@ submitActivityButtonEl.addEventListener("click", function (event) {
   console.log("Submit Activity");
   allInputs();
 });
-
-function appendRecipeResults(recipeResultsEl, recipes) {
-  recipes.forEach(function (recipe) {
-    var recipeEl = document.createElement("div");
-    recipeEl.innerHTML = `
-      <div><b>${recipe.title}</b></div>
-      <img src="${recipe.image}">
-      <p>Total Calories: ${recipe.calories}</p>
-    `;
-    recipeResultsEl.appendChild(recipeEl);
-    console.log(recipe);
-  });
-}
-
-// submit recipe button on click
-submitRecipeButtonEl.addEventListener("click", function (event) {
-  event.preventDefault();
-  console.log("Submitted Recipe");
-
-  var recipeQuery = document.getElementById("recipeInput").value;
-
-  searchRecipesByQuery(recipeQuery).then(function (recipes) {
-    recipeResultsEl = document.getElementById("recipeResults");
-    appendRecipeResults(recipeResultsEl, recipes.results);
-    console.log(recipes);
-  });
-});
-
-// var selectedActivity = document.getElementById('activitySelect').val;
-// var duration = durationInput.value.trim();
-// var weight = weightInput.value.trim();
-// searchActivityData(selectedActivity, duration, weight);
-
-// var activityEl = document.getElementById("activity");
-// var userActivityInput = document.getElementById("userActivity");
-// var durationInput = document.getElementById("duration");
-// var weightInput = document.getElementById("weight");
-// var submitButtonEl = document.getElementById("submitButton");
-// function searchActivity(activity, duration, weight) { // api call and search for activity
-//     var apiKey =
-//     var url =
-// activityEl.innerHTML = <p>Loading...</p>; //loading indicator
-// //fetch data
-// fetch(url, {
-//     headers: {
-//         "X-Api-Key": apiKey,
-//     },
-// })
-// .then(function (response) {
-//     if (!response.ok) {
-//         throw new Error ('network error');
-//     }
-//     return response.json();
-// })
-// .then(function (data) {
-//     displayResults(data);
-// })
-// .catch(function (error) {
-//     console.error('Error:', error);
-//     activityEl.textContent = "an error occurred while fetching data.";
-// })
-// }
-// //display results of api call
-// function displayResults(data) {
-//     //clear prev content
-//     activityEl.innerHTML = '';
-//     //check for rsults
-//     if (!data || data.length ===0) {
-//         activityEl.textContent = "no results found";
-//         return;
-//     }
-// }
-// //loop through data
-// data.forEach((result) => {
-//     var activityName = result.activity;
-//     var calBurned = result.calories;
-//     var duration = result.duration;
-//     var activityNameEl = document.createElement("h3");
-//     activityNameEl.textContent = `activity: ${activityName}`;
-//     activityEl.appendChild(activityNameEl);
-//     var calBurnedEl = document.createElement("p");
-//     calBurnedEl.textContent = `calories burned: ${calBurned}`
-//     activityEl.appendChild(calBurnedEl);
-// })
-// //add event listenr for submit button
-// //get values from input fields
-// //validate input
-// //call searchActivity function with user input
