@@ -202,11 +202,11 @@ submitActivityButtonEl.addEventListener("click", function (event) {
 
 function appendRecipeResults(recipeResultsEl, recipes) {
   recipes.forEach(function (recipe) {
-    recipeEl = document.createElement("div");
+    var recipeEl = document.createElement("div");
     recipeEl.innerHTML = `
       <div><b>${recipe.title}</b></div>
       <img src="${recipe.image}">
-      <p>${recipe.calories}</p>
+      <p>Total Calories: ${recipe.calories}</p>
     `;
     recipeResultsEl.appendChild(recipeEl);
     console.log(recipe);
