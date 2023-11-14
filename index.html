@@ -10,21 +10,25 @@
   <body>
     <h1>PROJECT 1</h1>
     <h2>Team 1</h2>
-    <h1 class="bg-blue-300">Hello Tailwind</h1> 
-    </h1>
     <form>
-       <label for = "userActivity">Choose your activity: </label>
-          <input type="text" id="userActivity" placeholder="example: skiing" required>
-            <label for = "duration"> duraction (minutes): </label>
-            <input type = "number" id = "duration" placeholder = "example: 30 mins" required>
-            <label for = "weight"> your weight (lbs): </label>
-            <input type = "number" id = "weight" placeholder = "example: 150lbs" required>
-            <label for = caloriesToBurn>calories to burn: </label>
-            <input type = "number" id = "caloriesToBurn" placeholder = "example: 500 calories" required>
-            <input type="text" id="userActivity">
-        <button id="submitButton">SUBMIT</button>
+      <input type="text" id="userActivity" />
+      <button id="submitButton">SUBMIT</button>
     </form>
     <div id="activity"></div>
+
+    <label for="activitySelect">Choose Activity:</label>
+    <select id="activitySelect" name="activity"></select>
+
+    Weight: <input type="text" id="weight">
+
+    <button id="activitySubmitButton">Submit Activity</button>
+
+    <div>
+      <div id="result"></div>
+    </div>
+
+    
+
     <script src="script.js"></script>
   </body>
 </html>
