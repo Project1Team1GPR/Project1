@@ -4,33 +4,62 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project 1</title>
+    <link rel="stylessheet" href="https://cdn.tailwindcss.com/3.3.5">
+    <link rel="stylesheet" href="style.css"> 
   </head>
   <body>
-    <h1>PROJECT 1</h1>
-    <h2>Team 1</h2>
+      <div class="topnav">
+        <a class="active" href="#home">Home</a>
+        <a href="#activity">Activity</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About: Team 1</a>
+        <input type="text" placeholder="Search..">
+      </div>
+
+      
+    <div id="userGreeting"></div> <!-- Where the greeting will be displayed -->
+  <form id="userInfoForm">
+    <div class = "container">
+      <div class = "meal-wrapper">
+        <div class = "meal-search">
+          <h2 class = "title">Find Activites For Your Ingredients</h2>
+          <blockquote>Workout because its good for you, so you best enjoy it...<br>
+            <cite>- Patric Xiong</cite>
+          </blockquote>
+          <div class = "meal-search-box">
+            <input type = "text" class = "search-control" placeholder="Enter a recipe" id = "search-input">
+            <button type = "submit" class = "search-btn btn" id = "search-btn">
+              <i class = "fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+        <div class = "meal-result">
+          <h2 class = "title">Your Search Results:</h2>
+          <div id= "meal">
+        </div>
+      </div>
     <h3>Food Calories vs. Activity Calories</h3>
 
     <!-- <form method="post">
       <input type="text" id="userActivity" />
       <button id="submitButton" type="submit">SUBMIT</button>
     </form> -->
-
     <table style="border: 1px solid black">
       <tr>
-        <th>Recipe</th>
         <th>Activity</th>
+        <th>Recipe</th>
       </tr>
       <tr>
         <td>
-          <div id="recipe"></div>
-          <label for="recipeInput">Choose recipe:</label>
-          <input id="recipeInput" name="chooseRecipe" type="text"></select>
-          <button id="recipeSubmitButton">Submit Recipe</button>
-        </td>
-        <td>
           <label for="activitySelect">Choose Activity:</label>
           <select id="activitySelect" name="activity"></select>
-          <button id="activitySubmitButton">Submit Activity</button>
+          <!-- <button id="activitySubmitButton">Submit Activity</button> -->
+        </td>
+        <td>
+          <div id="recipe"></div>
+          <label for="recipeInput">Choose recipe:</label>
+          <input id="recipeInput" name="chooseRecipe" type="text">
+          <button id="recipeSubmitButton">Submit Recipe</button>
         </td>
       </tr>
       <tr>
@@ -43,12 +72,17 @@
       </tr>
     </table>
 
+
     <!-- Options will be populated here -->
 
-    Weight: <input type="text" id="weight" />
+    <!-- Weight: <input type="text" id="weight" /> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="script.js"></script>
+    <footer>
+      <p>About Us: Gavin, Rachel & Patric<br>
+      <a href="email@example.com">email@example.com</a></p>
+    </footer>
   </body>
 </html>
