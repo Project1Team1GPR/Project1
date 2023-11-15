@@ -38,12 +38,14 @@ function activityList() {
     })
     .then(function (data) {
       console.log(data);
-      data.activities.unshift("--Pick an Activity--");
+      // add a placeholder to activity list to the start
+      // data.activities.unshift("--Pick an Activity--");
       data.activities.forEach(function (activity) {
         var option = document.createElement("option");
         option.value = activity;
         option.text = activity;
         userActivitySelect.appendChild(option);
+
       });
     });
 }
@@ -171,10 +173,55 @@ submitRecipeButtonEl.addEventListener("click", async function (event) {
 
   var recipeQuery = document.getElementById("recipeInput").value;
 
+  // error messages if fields don't exist
+  var errorMessage1 = document.getElementById("errorMessage1");
+  var errorMessage2 = document.getElementById("errorMessage2");
+
+  // check to see if error messages already exist
+  if (!errorMessage1) {
+    errorMessage1 = document.createElement("div");
+    errorMessage1.id = "errorMessage1";
+    errorMessage1.style.color = "red";
+    errorMessage1.style.display = "none"; // Hide initially
+    var activitySelectDiv = document.getElementById("activitySelect").parentNode;
+    activitySelectDiv.insertBefore(errorMessage1, activitySelectDiv.firstChild);
+  }
+
+  if (!errorMessage2) {
+    errorMessage2 = document.createElement("div");
+    errorMessage2.id = "errorMessage2";
+    errorMessage2.style.color = "red";
+    errorMessage2.style.display = "none"; // Hide initially
+    var recipeInputDiv = document.getElementById("recipeInput").parentNode;
+    recipeInputDiv.insertBefore(errorMessage2, recipeInputDiv.firstChild);
+  }
+
+  // checkt to see if an activity has been selected
+  if(userSelectedActivity.trim() === "") {
+    errorMessage1.textContent = "Please select an activity to search.";
+    // display the message
+    errorMessage1.style.display = "block";
+    // stop further execution
+    return; 
+  }
+
+  // check to see if the recipeQuery is not empty
+  if (recipeQuery.trim() === ''){
+    errorMessage2.textContent = "Please enter a recipe to search.";
+    // display the message
+    errorMessage2.style.display = "block";
+    // stop further execution
+    return; 
+  }
+
   searchRecipesByQuery(recipeQuery).then(function (recipes) {
     recipeResultsEl = document.getElementById("recipeResults");
     appendRecipeResults(recipeResultsEl, recipes.results);
     console.log(recipes);
+
+    // hide the error message if it was displayed
+    errorMessage1.style.display = "none";
+    errorMessage2.style.display = "none";
   });
 });
 

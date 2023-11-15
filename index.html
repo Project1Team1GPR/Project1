@@ -49,19 +49,24 @@
         <th>Activity</th>
         <th>Recipe</th>
       </tr>
-      <tr>
+      <form>
         <td>
           <label for="activitySelect">Choose Activity:</label>
-          <select id="activitySelect" name="activity"></select>
+          <select id="activitySelect" name="activity" required>
+            <option disabled selected value="">--Pick an Activity--</option>
+          </select>
+          <!-- <div id="errorMessage1" style="color: red; display: none;"></div> -->
           <!-- <button id="activitySubmitButton">Submit Activity</button> -->
         </td>
         <td>
           <div id="recipe"></div>
           <label for="recipeInput">Choose recipe:</label>
-          <input id="recipeInput" name="chooseRecipe" type="text">
+          <input id="recipeInput" name="chooseRecipe" type="text" required>
+          <!-- <div id="errorMessage2" style="color: red; display: none;"></div> -->
           <button id="recipeSubmitButton">Submit Recipe</button>
+
         </td>
-      </tr>
+      </form>
       <tr>
         <td>
           <div id="recipeResults"></div>
