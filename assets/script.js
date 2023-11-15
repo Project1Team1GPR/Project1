@@ -11,6 +11,13 @@ var resultEl = document.getElementById("result");
 var recipeSelect = document.getElementById("recipeSelect");
 var caloriesPerMinute = 1 
 var userSelectedActivity = "";
+var userInfoButtonEl = document.getElementById("userInfoButton");
+var userNameEl = document.getElementById("userName");
+var userWeightEl  = document.getElementById("userWeight");
+var userNameInput = '';
+var userWeightInput = '';
+var recipeResultsEl = document.getElementById("recipeResults");
+var welcomeUserEl = document.getElementById("welcomeUser");
 
 // step 1- user selects recipe, user gets # of calories needed to be burned - api spoon
 // Step 2- user selects activity type from drop down list
@@ -23,42 +30,82 @@ var userSelectedActivity = "";
 // 3. Select recipe
 // 4. take total cals from selected recipe to help determine total duration of selected activity
 
+// Function to display the welcome message
+function displayWelcomeMessage() {
+  // Retrieve user information from localStorage
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+  
+  // Check if userInfo exists
+  if (userInfo && userInfo.length > 0) {
+    const [userName] = userInfo; // Extracting the user's name
+  
+    // Update the HTML element to display the welcome message
+    const welcomeMessage = document.getElementById('welcomeMessage');
+    welcomeMessage.textContent = `Welcome back, ${userName}!`; // Update with the user's name
+  }
+}
+
+// Call the function to display the welcome message when the page loads
+// document.addEventListener('DOMContentLoaded', function() {
+//   displayWelcomeMessage();
+// });
+
+window.addEventListener("load", displayWelcomeMessage);
 
 
 function activityList() {
   var exerciseListUrl = `https://api.api-ninjas.com/v1/caloriesburnedactivities`;
-
+  
+  
   fetch(exerciseListUrl, {
     headers: {
       "X-Api-Key": "Wjicx6SkiBem7pplQibm7g==wVPkDcY9lX6RAcn0",
     },
   })
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-      // add a placeholder to activity list to the start
-      // data.activities.unshift("--Pick an Activity--");
-      data.activities.forEach(function (activity) {
-        var option = document.createElement("option");
-        option.value = activity;
-        option.text = activity;
-        userActivitySelect.appendChild(option);
-
-      });
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+    // add a placeholder to activity list to the start
+    // data.activities.unshift("--Pick an Activity--");
+    data.activities.forEach(function (activity) {
+      var option = document.createElement("option");
+      option.value = activity;
+      option.text = activity;
+      userActivitySelect.appendChild(option);
+      
     });
+  });
 }
 activityList();
+
+userInfoButtonEl.addEventListener("click", function(event){
+  console.log("Save Info");
+  var userInfo = [
+  userNameInput = userNameEl.value,
+  userWeightInput = userWeightEl.value,
+  ]
+
+  // updated local storage
+  localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
+})
 
 userActivitySelect.addEventListener("change", function(event){
   event.preventDefault();
   console.log(event.target.value);
 
-  var caloriesBurnedUrl = `https://api.api-ninjas.com/v1/caloriesburned?activity=${event.target.value.substring(1)}&duration=60&weight=200`;
+   var userWeight = JSON.parse(localStorage.getItem("userInfo"))[1];
+  //  if (!userWeight) {
 
-  // var userWeight = userWeightInput.value;
+    
+  //  }
+
   
+  var caloriesBurnedUrl = `https://api.api-ninjas.com/v1/caloriesburned?activity=${event.target.value.substring(1)}&duration=60&weight=${userWeight}`;
+
+ 
   fetch(caloriesBurnedUrl, {
     headers: {
       "X-Api-Key": "Wjicx6SkiBem7pplQibm7g==wVPkDcY9lX6RAcn0",
@@ -115,7 +162,7 @@ function appendRecipeResults(recipeResultsEl, recipes) {
       <img src="${recipe.image}">
       <p>Total Calories: ${recipe.calories}</p>
       <p>It will take ${Math.round(recipe.calories / caloriesPerMinute)} minutes of ${userActivitySelect.value} to burn of this meal.</p>
-      <button data-id="${recipe.id}">Ingrediens</button>
+      <button data-id="${recipe.id}">Ingredients</button>
       <div data-ingr="${recipe.id}" id="recipeIngredientList"></div>
       `;
 
@@ -148,6 +195,7 @@ $("#recipeResults").on("click", "button", async function (event) {
   event.preventDefault();
   var recipeId = $(event.target).data("id");
   console.log(recipeId);
+
   var ingredients = await getIngredientsById(recipeId);
   // console.log(ingredients.ingredients);
   displayIngredientsList(ingredients, recipeId);
@@ -169,6 +217,8 @@ async function getIngredientsById(id) {
 // submit recipe button on click
 submitRecipeButtonEl.addEventListener("click", async function (event) {
   event.preventDefault();
+  // clear results so it doesn't keep duplicating them
+  recipeResultsEl.innerHTML = '';
   console.log("Submitted Recipe");
 
   var recipeQuery = document.getElementById("recipeInput").value;
@@ -224,159 +274,3 @@ submitRecipeButtonEl.addEventListener("click", async function (event) {
     errorMessage2.style.display = "none";
   });
 });
-
-  
-
-
-// DELETE BELOW
-// attempting to get calories displayed on screen
-// async function getCaloriesByRecipeId(id) {
-//   var nutritionUrl = `https://api.spoonacular.com/recipes/${id}/nutritionWidget.json?apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3`;
-
-//   try {
-//     const response = await fetch(nutritionUrl);
-//     const data = await response.json();
-//     return data.calories;
-//   } catch (error) {
-//     console.error("error fetching nutrition information:", error);
-//     return "no data";
-//   }
-// }
-
-
-// const activitySelect = document.getElementById("activitySelect");
-// const caloriesDisplay = document.getElementById("caloriesDisplay");
-
-// Function to fetch and display calories burned per hour for the selected activity
-// function displayCaloriesBurned(event) {
-//   const selectedActivity = userActivitySelect.value;
-
-//   if (selectedActivity) {
-//     const url = `https://api.api-ninjas.com/v1/caloriesburned?activity=${selectedActivity}&duration=60&weight=200`; // Assuming a default weight of 200 lbs
-
-//     fetch(url, {
-//       headers: {
-//         "X-Api-Key": "Wjicx6SkiBem7pplQibm7g==wVPkDcY9lX6RAcn0",
-//       },
-//     })
-//       .then((response) => response.json())
-//       .then((data) => {
-//         const caloriesPerHour = data[0]?.calories_per_hour || 0;
-//         caloriesDisplay.textContent = `Calories Burned per Hour: ${caloriesPerHour}`;
-//       })
-//       .catch((error) => {
-//         console.error("Error fetching calories burned per hour:", error);
-//         caloriesDisplay.textContent = "Failed to fetch data";
-//       });
-//   } else {
-//     caloriesDisplay.textContent = "Please select an activity";
-//   }
-// }
-
-// Event listener for activity selection
-// userActivitySelect.addEventListener("change", displayCaloriesBurned);
-
-// var selectedActivity = userActivitySelect.value;
-// var userWeight = userWeightInput.value;
-
-// function allInputs() {
-//   console.log("allInputs Works");
-//   // get recipe cals from api call
-
-//   // api call to get cals burned per min for the selected activity
-
-//   var url = `https://api.api-ninjas.com/v1/caloriesburned?activity=${activity}&duration=60&weight=${userWeight}`;
-//   // var selectedActivity = userActivitySelect.value;
-//   // var userWeight = userWeightInput.value;
-  
-//   fetch(url, {
-//     headers: {
-//       "X-Api-Key": "Wjicx6SkiBem7pplQibm7g==wVPkDcY9lX6RAcn0",
-//     },
-//   })
-//     .then(function (response) {
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       console.log(data);
-
-//       if (!data.length) {
-//         console.log("No results found");
-//         resultEl.textContent = "No Results Found";
-//       } else {
-//         resultEl.textContent = "";
-
-//         for (let i = 0; i < data.length; i++) {
-//           var activityName = data[i].activities;
-//           var activityEl = document.createElement("h3");
-//           activityEl.textContent = `Activity: ${activityName}`;
-//           resultEl.appendChild(activityEl);
-
-//           var caloriesBurned = data[i].calories_per_hour;
-//           var calorieEl = document.createElement("p");
-//           calorieEl.textContent = `Calories Burned: ${caloriesBurned}`;
-//           resultEl.appendChild(calorieEl);
-//         }
-//       }
-
-//       //   .catch(function (error) {
-//       //     console.error('error:', error);
-//       //     activityEl.textContent = 'cannot retrieve data';
-
-//       // })
-//     });
-
-//   // then users weight
-// }
-
-// allInputs(calories, selectedActivity, userWeight);
-
-// function calcActivityDuration(calsBurnedPerMin, calories = 1000) {
-//   return calories / calsBurnedPerMin;
-// }
-
-// function searchActivityData(userInput) {
-//   var url = `https://api.api-ninjas.com/v1/caloriesburned?activity=ski&duration=60&weight=200`;
-//   fetch(url, {
-//     headers: {
-//       "X-Api-Key": "Wjicx6SkiBem7pplQibm7g==wVPkDcY9lX6RAcn0",
-//     },
-//   })
-//     .then(function (response) {
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       console.log(data);
-//       activity.textContent = data;
-
-//       if (!data.length) {
-//         console.log("No results found");
-//         activity.textContent = "No Results Found";
-//       } else {
-//         activity.textContent = "";
-//         for (let i = 0; i < data.length; i++) {
-//           var activityName = data[i].name;
-//           var activityEl = document.createElement("h3");
-//           activityEl.textContent = `Activity: ${activityName}`;
-//           activity.appendChild(activityEl);
-
-//           var caloriesBurned = data[i].total_calories;
-//           var calorieEl = document.createElement("p");
-//           calorieEl.textContent = `Calories Burned: ${caloriesBurned}`;
-//           activity.appendChild(calorieEl);
-
-//           var activityDuration = data[i].duration_minutes;
-//           var durationEl = document.createElement("p");
-//           durationEl.textContent = `Activity Duration: ${activityDuration} min`;
-//           activity.appendChild(durationEl);
-//         }
-//       }
-//     });
-// }
-
-// submit activity button on click
-// submitActivityButtonEl.addEventListener("click", function (event) {
-//   event.preventDefault();
-//   console.log("Submit Activity");
-//   allInputs();
-// });

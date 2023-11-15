@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class = "meal-result">
-          <h2 class = "title">Your Search Results:</h2>
+          <h2 class = "title">Instructions:</h2>
           <div id= "meal">
         </div>
       </div>
@@ -44,12 +44,23 @@
       <input type="text" id="userActivity" />
       <button id="submitButton" type="submit">SUBMIT</button>
     </form> -->
+    <div id="welcomeMessage"></div>
+  
     <table style="border: 1px solid black">
       <tr>
+        <th>Personal Information</th>
         <th>Activity</th>
         <th>Recipe</th>
       </tr>
       <form>
+        <td>
+          <label for="">Name:</label>
+          <input type="text" name="name" id="userName">
+          <br>
+          <label for="">Weight:</label>
+          <input type="text" name="weight" id="userWeight">
+          <button id="userInfoButton">SAVE INFO</button>
+        </td>
         <td>
           <label for="activitySelect">Choose Activity:</label>
           <select id="activitySelect" name="activity" required>
@@ -71,16 +82,12 @@
         <td>
           <div id="recipeResults"></div>
         </td>
-        <td>
+        <!-- <td>
           <div id="result"></div>
-        </td>
+        </td> -->
       </tr>
     </table>
 
-
-    <!-- Options will be populated here -->
-
-    <!-- Weight: <input type="text" id="weight" /> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
