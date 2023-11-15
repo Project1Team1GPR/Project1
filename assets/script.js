@@ -112,7 +112,7 @@ function appendRecipeResults(recipeResultsEl, recipes) {
     <div><b>${recipe.title}</b></div>
       <img src="${recipe.image}">
       <p>Total Calories: ${recipe.calories}</p>
-      <p>It will take ${Math.round(recipe.calories / caloriesPerMinute)} minutes of ${userActivitySelect.value} to burn of this meal</p>
+      <p>It will take ${Math.round(recipe.calories / caloriesPerMinute)} minutes of ${userActivitySelect.value} to burn of this meal.</p>
       <button data-id="${recipe.id}">Ingrediens</button>
       <div data-ingr="${recipe.id}" id="recipeIngredientList"></div>
       `;
