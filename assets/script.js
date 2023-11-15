@@ -9,13 +9,13 @@ var userWeightInput = document.getElementById("weight");
 var resultEl = document.getElementById("result");
 // var calories = 1000;
 var recipeSelect = document.getElementById("recipeSelect");
-var caloriesPerMinute = 1 
+var caloriesPerMinute = 1;
 var userSelectedActivity = "";
 var userInfoButtonEl = document.getElementById("userInfoButton");
 var userNameEl = document.getElementById("userName");
-var userWeightEl  = document.getElementById("userWeight");
-var userNameInput = '';
-var userWeightInput = '';
+var userWeightEl = document.getElementById("userWeight");
+var userNameInput = "";
+var userWeightInput = "";
 var recipeResultsEl = document.getElementById("recipeResults");
 var welcomeUserEl = document.getElementById("welcomeUser");
 
@@ -33,14 +33,14 @@ var welcomeUserEl = document.getElementById("welcomeUser");
 // Function to display the welcome message
 function displayWelcomeMessage() {
   // Retrieve user information from localStorage
-  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-  
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
   // Check if userInfo exists
   if (userInfo && userInfo.length > 0) {
     const [userName] = userInfo; // Extracting the user's name
-  
+
     // Update the HTML element to display the welcome message
-    const welcomeMessage = document.getElementById('welcomeMessage');
+    const welcomeMessage = document.getElementById("welcomeMessage");
     welcomeMessage.textContent = `Welcome back, ${userName}!`; // Update with the user's name
   }
 }
@@ -52,60 +52,55 @@ function displayWelcomeMessage() {
 
 window.addEventListener("load", displayWelcomeMessage);
 
-
 function activityList() {
   var exerciseListUrl = `https://api.api-ninjas.com/v1/caloriesburnedactivities`;
-  
-  
+
   fetch(exerciseListUrl, {
     headers: {
       "X-Api-Key": "Wjicx6SkiBem7pplQibm7g==wVPkDcY9lX6RAcn0",
     },
   })
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    console.log(data);
-    // add a placeholder to activity list to the start
-    // data.activities.unshift("--Pick an Activity--");
-    data.activities.forEach(function (activity) {
-      var option = document.createElement("option");
-      option.value = activity;
-      option.text = activity;
-      userActivitySelect.appendChild(option);
-      
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      // add a placeholder to activity list to the start
+      // data.activities.unshift("--Pick an Activity--");
+      data.activities.forEach(function (activity) {
+        var option = document.createElement("option");
+        option.value = activity;
+        option.text = activity;
+        userActivitySelect.appendChild(option);
+      });
     });
-  });
 }
 activityList();
 
-userInfoButtonEl.addEventListener("click", function(event){
+userInfoButtonEl.addEventListener("click", function (event) {
   console.log("Save Info");
   var userInfo = [
-  userNameInput = userNameEl.value,
-  userWeightInput = userWeightEl.value,
-  ]
+    (userNameInput = userNameEl.value),
+    (userWeightInput = userWeightEl.value),
+  ];
 
   // updated local storage
   localStorage.setItem("userInfo", JSON.stringify(userInfo));
+});
 
-})
-
-userActivitySelect.addEventListener("change", function(event){
+userActivitySelect.addEventListener("change", function (event) {
   event.preventDefault();
   console.log(event.target.value);
 
-   var userWeight = JSON.parse(localStorage.getItem("userInfo"))[1];
+  var userWeight = JSON.parse(localStorage.getItem("userInfo"))[1];
   //  if (!userWeight) {
 
-    
   //  }
 
-  
-  var caloriesBurnedUrl = `https://api.api-ninjas.com/v1/caloriesburned?activity=${event.target.value.substring(1)}&duration=60&weight=${userWeight}`;
+  var caloriesBurnedUrl = `https://api.api-ninjas.com/v1/caloriesburned?activity=${event.target.value.substring(
+    1
+  )}&duration=60&weight=${userWeight}`;
 
- 
   fetch(caloriesBurnedUrl, {
     headers: {
       "X-Api-Key": "Wjicx6SkiBem7pplQibm7g==wVPkDcY9lX6RAcn0",
@@ -161,15 +156,15 @@ function appendRecipeResults(recipeResultsEl, recipes) {
     <div><b>${recipe.title}</b></div>
       <img src="${recipe.image}">
       <p>Total Calories: ${recipe.calories}</p>
-      <p>It will take ${Math.round(recipe.calories / caloriesPerMinute)} minutes of ${userActivitySelect.value} to burn of this meal.</p>
+      <p>It will take ${Math.round(
+        recipe.calories / caloriesPerMinute
+      )} minutes of ${userActivitySelect.value} to burn of this meal.</p>
       <button data-id="${recipe.id}">Ingredients</button>
       <div data-ingr="${recipe.id}" id="recipeIngredientList"></div>
       `;
 
-      // DELETE
-      // <p>Calories Burned per Minute for Selected Activity: ${caloriesPerMinute ? caloriesPerMinute.toFixed(2) : 'Select an activity'}</p>
-
-      
+    // DELETE
+    // <p>Calories Burned per Minute for Selected Activity: ${caloriesPerMinute ? caloriesPerMinute.toFixed(2) : 'Select an activity'}</p>
 
     recipeResultsEl.appendChild(recipeEl);
     console.log(recipe);
@@ -218,7 +213,7 @@ async function getIngredientsById(id) {
 submitRecipeButtonEl.addEventListener("click", async function (event) {
   event.preventDefault();
   // clear results so it doesn't keep duplicating them
-  recipeResultsEl.innerHTML = '';
+  recipeResultsEl.innerHTML = "";
   console.log("Submitted Recipe");
 
   var recipeQuery = document.getElementById("recipeInput").value;
@@ -233,7 +228,8 @@ submitRecipeButtonEl.addEventListener("click", async function (event) {
     errorMessage1.id = "errorMessage1";
     errorMessage1.style.color = "red";
     errorMessage1.style.display = "none"; // Hide initially
-    var activitySelectDiv = document.getElementById("activitySelect").parentNode;
+    var activitySelectDiv =
+      document.getElementById("activitySelect").parentNode;
     activitySelectDiv.insertBefore(errorMessage1, activitySelectDiv.firstChild);
   }
 
@@ -247,21 +243,21 @@ submitRecipeButtonEl.addEventListener("click", async function (event) {
   }
 
   // checkt to see if an activity has been selected
-  if(userSelectedActivity.trim() === "") {
+  if (userSelectedActivity.trim() === "") {
     errorMessage1.textContent = "Please select an activity to search.";
     // display the message
     errorMessage1.style.display = "block";
     // stop further execution
-    return; 
+    return;
   }
 
   // check to see if the recipeQuery is not empty
-  if (recipeQuery.trim() === ''){
+  if (recipeQuery.trim() === "") {
     errorMessage2.textContent = "Please enter a recipe to search.";
     // display the message
     errorMessage2.style.display = "block";
     // stop further execution
-    return; 
+    return;
   }
 
   searchRecipesByQuery(recipeQuery).then(function (recipes) {
