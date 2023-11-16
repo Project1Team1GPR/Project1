@@ -174,11 +174,11 @@ function appendRecipeResults(recipeResultsEl, recipes) {
 // convert ingredient amount to fractions
 function displayIngredientsList(ingredients, recipeId) {
   console.log(ingredients.ingredients);
-  var ingredientListEl = $(`[data-ingr='${recipeId}']`);
+  var ingredientListEl = $(`[data-ingr='${recipeId}']`); //jquery selector for div of listofingredients
   var ul = document.createElement("ul");
-  console.log(ingredientListEl.children());
   if (ingredientListEl.children().length > 0) {
-    ingredientListEl.toggle();
+    //check if ul in div
+    ingredientListEl.toggle(); //toggle show or hide
     return;
   }
   ingredients.ingredients.forEach((ingredient) => {
