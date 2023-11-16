@@ -176,6 +176,11 @@ function displayIngredientsList(ingredients, recipeId) {
   console.log(ingredients.ingredients);
   var ingredientListEl = $(`[data-ingr='${recipeId}']`);
   var ul = document.createElement("ul");
+  console.log(ingredientListEl.children());
+  if (ingredientListEl.children().length > 0) {
+    ingredientListEl.toggle();
+    return;
+  }
   ingredients.ingredients.forEach((ingredient) => {
     var li = document.createElement("li");
     li.textContent = `${ingredient.amount} ${ingredient.unit} ${ingredient.name}`;
