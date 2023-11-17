@@ -177,7 +177,7 @@ function displayIngredientsList(ingredients, recipeId, recipeUrl) {
   if (ingredientListEl.children().length > 0) {
     //check if ul in div
     ingredientListEl.toggle(); //toggle show or hide
-    return;
+    return; //nothing more to do
   }
   ingredients.ingredients.forEach((ingredient) => {
     var li = document.createElement("li");
