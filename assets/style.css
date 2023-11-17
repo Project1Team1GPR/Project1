@@ -149,6 +149,28 @@ label {
 }
 .title {
   font-size: 2rem;
-  margin-bottom: 1rem;
+  margin: 1rem;
+  padding: 2em;
+}
+
+.instructions {
+  margin: 1rem;
+  padding: 2em;
+}
+
+#welcomeMessage {
+  text-align: center;
+  font-size: 2em;
+}
+
+.userInfo {
+  align-content: center;
+}
+
+.mainTable {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 

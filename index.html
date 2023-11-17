@@ -66,7 +66,7 @@
       </div>
     </section>
 
-    <div class="meal-result">
+    <div class="instructions">
       <h2 class="title">Instructions:</h2>
       <div id="">
         <p>Step 1: Please enter your name and weight and hit the "Save Info" button.</p>
@@ -85,42 +85,43 @@
         <br />
         <p>Step 7: Enjoy!</p>
         <br />
-
       </div>
     </div>
     <h3>Food Calories vs. Activity Calories</h3>
     <div id="welcomeMessage"></div>
 
-    <table style="border: 1px solid black">
-      <tr>
-        <th>Personal Information</th>
-        <th>Activity</th>
-        <th>Recipe</th>
-      </tr>
-      <form>
-        <td id="personalInfo">
-          <label for="">Name:</label>
-          <input type="text" name="name" id="userName" />
-          <br />
-          <label for="">Weight:</label>
-          <input type="text" name="weight" id="userWeight" />
-          <button id="userInfoButton">SAVE INFO</button>
-        </td>
-      </form>
-      <form>
-        <td>
-          <label for="activitySelect">Choose Activity:</label>
-          <select id="activitySelect" name="activity" required>
-            <option disabled selected value="">--Pick an Activity--</option>
-          </select>
-        </td>
-        <td>
-          <div id="recipe"></div>
-          <label for="recipeInput">Choose recipe:</label>
-          <input id="recipeInput" name="chooseRecipe" type="text" required />
-          <button id="recipeSubmitButton">Submit Recipe</button>
-        </td>
-      </form>
+    <table class="mainTable">
+        <div id="infoBox">
+          <tr>
+            <th>Personal Information</th>
+            <th>Activity</th>
+            <th>Recipe</th>
+          </tr>
+          <form class="userInfo">
+            <td id="personalInfo">
+              <label for="">Name:</label>
+              <input type="text" name="name" id="userName" />
+              <br />
+              <label for="">Weight:</label>
+              <input type="text" name="weight" id="userWeight" />
+              <button id="userInfoButton">SAVE INFO</button>
+            </td>
+          </form>
+          <form>
+            <td>
+              <label for="activitySelect">Choose Activity:</label>
+              <select id="activitySelect" name="activity" required>
+                <option disabled selected value="">--Pick an Activity--</option>
+              </select>
+            </td>
+            <td>
+              <div id="recipe"></div>
+              <label for="recipeInput">Choose recipe:</label>
+              <input id="recipeInput" name="chooseRecipe" type="text" required />
+              <button id="recipeSubmitButton">Submit Recipe</button>
+            </td>
+          </form>
+        </div>
       <tr>
         <td>
           <div id="recipeResults"></div>
