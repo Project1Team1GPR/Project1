@@ -79,38 +79,6 @@ body {
   font-size: 17px;
 }
 
-.recipe {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px; /* Space between recipes */
-}
-
-.recipe-image {
-    width: 200px; /* Adjust as needed */
-    height: auto;
-    margin-right: 20px; /* Space between image and info */
-}
-
-.recipe-info {
-    flex-grow: 1; /* Info takes up remaining space */
-}
-
-@media screen and (max-width: 600px) {
-    .recipe {
-        flex-direction: column;
-        align-items: start;
-    }
-
-    .recipe-image {
-        width: 100%; /* Full width on small screens */
-        margin-right: 0;
-        margin-bottom: 10px; /* Space between image and info */
-    }
-
-    .recipe-info {
-        flex-grow: 0; /* No need to grow in column layout */
-    }
-}
 
 @media screen and (max-width: 600px) {
   .topnav a,
@@ -122,7 +90,6 @@ body {
     margin: 0;
     padding: 14px;
   }
-  
   .topnav input[type="text"] {
     border: 1px solid #ccc;
   }
@@ -184,57 +151,4 @@ label {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
-/* 
-.container {
-  min-height: 100vh;
-}
-.meal-wrapper {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  background: #fff;
-  text-align: center;
-}
-.meal-search {
-  margin: 2rem 0;
-}
-.meal-search cite {
-  font-size: 1rem;
-}
-.meal-search-box {
-  margin: 1.2rem 0;
-  display: flex;
-  align-items: stretch;
-}
-.search-control,
-.search-btn {
-  width: 100%;
-}
-.search-control {
-  padding: 0 1rem;
-  font-size: 1.1rem;
-  font-family: inherit;
-  outline: 0;
-  border: 1px solid var(--tenne-tawny);
-  color: var(--tenne-tawny);
-  border-top-left-radius: 2rem;
-  border-bottom-left-radius: 2rem;
-}
-.search-control::placeholder {
-  color: var(--tenne-tawny);
-}
-.search-btn {
-  width: 55px;
-  height: 55px;
-  font-size: 1.8rem;
-  background: var(--tenne-tawny);
-  color: #fff;
-  border: none;
-  border-top-right-radius: 2rem;
-  border-bottom-right-radius: 2rem;
-  transition: all 0.4s linear;
-  -webkit-transition: all 0.4s linear;
-  -moz-transition: all 0.4s linear;
-  -ms-transition: all 0.4s linear;
-  -o-transition: all 0.4s linear;
-} */
+
