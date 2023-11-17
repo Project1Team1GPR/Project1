@@ -62,11 +62,11 @@
         <h2>
           Here at team-AllCoast we offer the best recipes for your activities
         </h2>
-        <a href="https://example.com/" class="btn">Click Me!</a>
+        <a href="#instructions" class="btn">Click Me!</a>
       </div>
     </section>
 
-    <div class="instructions">
+    <div id="instructions">
       <h2 class="title">Instructions:</h2>
       <div id="">
         <p>Step 1: Please enter your name and weight and hit the "Save Info" button.</p>
@@ -90,44 +90,46 @@
     <h3>Food Calories vs. Activity Calories</h3>
     <div id="welcomeMessage"></div>
 
-    <table class="mainTable">
-        <div id="infoBox">
-          <tr>
-            <th>Personal Information</th>
-            <th>Activity</th>
-            <th>Recipe</th>
-          </tr>
-          <form class="userInfo">
-            <td id="personalInfo">
-              <label for="">Name:</label>
-              <input type="text" name="name" id="userName" />
-              <br />
-              <label for="">Weight:</label>
-              <input type="text" name="weight" id="userWeight" />
-              <button id="userInfoButton">SAVE INFO</button>
-            </td>
-          </form>
-          <form>
-            <td>
-              <label for="activitySelect">Choose Activity:</label>
-              <select id="activitySelect" name="activity" required>
-                <option disabled selected value="">--Pick an Activity--</option>
-              </select>
-            </td>
-            <td>
-              <div id="recipe"></div>
-              <label for="recipeInput">Choose recipe:</label>
-              <input id="recipeInput" name="chooseRecipe" type="text" required />
-              <button id="recipeSubmitButton">Submit Recipe</button>
-            </td>
-          </form>
-        </div>
-      <tr>
-        <td>
-          <div id="recipeResults"></div>
-        </td>
-      </tr>
-    </table>
+    <div class="container">
+      <table class="mainTable">
+          <tbody id="infoBox">
+            <tr>
+              <th>Personal Information</th>
+              <th>Activity</th>
+              <th>Recipe</th>
+            </tr>
+            <form class="userInfo">
+              <td id="personalInfo">
+                <label for="userName">Name:</label>
+                <input type="text" name="name" id="userName" />
+                <!-- <br /> -->
+                <label for="">Weight:</label>
+                <input type="text" name="weight" id="userWeight" />
+                <button id="userInfoButton">SAVE INFO</button>
+              </td>
+            </form>
+            <form>
+              <td>
+                <label for="activitySelect">Choose Activity:</label>
+                <select id="activitySelect" name="activity" required>
+                  <option disabled selected value="">--Pick an Activity--</option>
+                </select>
+              </td>
+              <td>
+                <div id="recipe"></div>
+                <label for="recipeInput">Choose recipe:</label>
+                <input id="recipeInput" name="chooseRecipe" type="text" required />
+                <button id="recipeSubmitButton">Submit Recipe</button>
+              </td>
+            </form>
+          </tbody>
+        <tr>
+          <td>
+            <div id="recipeResults"></div>
+          </td>
+        </tr>
+      </table>
+    </div>
     <footer class="footer">
       <div class="col-1">
         <h3>Links</h3>

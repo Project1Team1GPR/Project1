@@ -5,6 +5,7 @@ body {
   font-size: 1.05rem;
   line-height: 1.6;
   font-family: "Poppins", sans-serif;
+  background-color: whitesmoke
 }
 
 .hero {
@@ -153,9 +154,9 @@ label {
   padding: 2em;
 }
 
-.instructions {
+#instructions {
   margin: 1rem;
-  padding: 2em;
+  padding: 1em;
 }
 
 #welcomeMessage {
@@ -163,14 +164,43 @@ label {
   font-size: 2em;
 }
 
+
+
 .userInfo {
   align-content: center;
 }
 
 .mainTable {
   border: 1px solid black;
+  width: 100%; 
+  border-collapse: collapse;
+}
+
+.mainTable th {
+  text-align: center; 
+  vertical-align: middle; 
+  padding: 1em;
+
+}
+
+.mainTable td {
+  text-align: center; 
+  vertical-align: middle; 
+  padding: 1em;
+}
+
+.mainTable button {
+  padding: .5em;
+  display: inline-block;
+
+}
+
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* height: 100vh; */
+  padding: 1em;
+ 
 }
 
