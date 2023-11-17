@@ -4,104 +4,161 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project 1</title>
-    <link rel="stylessheet" href="https://cdn.tailwindcss.com/3.3.5">
-    <link rel="stylesheet" href="./assets/style.css"> 
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
-      <div class="topnav">
-        <a class="active" href="#home">Home</a>
-        <a href="#activity">Activity</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About: Team 1</a>
-        <input type="text" placeholder="Search..">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          <img
+            src="https://bulma.io/images/bulma-logo.png"
+            width="112"
+            height="28"
+          />
+        </a>
+
+        <a
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
       </div>
 
-      
-    <div id="userGreeting"></div> <!-- Where the greeting will be displayed -->
-  <form id="userInfoForm">
-    <div class = "container">
-      <div class = "meal-wrapper">
-        <div class = "meal-search">
-          <h2 class = "title">Find Activites For Your Ingredients</h2>
-          <blockquote>Workout because its good for you, so you best enjoy it...<br>
-            <cite>- Patric Xiong</cite>
-          </blockquote>
-          <div class = "meal-search-box">
-            <input type = "text" class = "search-control" placeholder="Enter a recipe" id = "search-input">
-            <button type = "submit" class = "search-btn btn" id = "search-btn">
-              <i class = "fas fa-search"></i>
-            </button>
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item"> Home </a>
+
+          <a class="navbar-item"> Documentation </a>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link"> More </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item"> About </a>
+              <a class="navbar-item"> Jobs </a>
+              <a class="navbar-item"> Contact </a>
+              <hr class="navbar-divider" />
+              <a class="navbar-item"> Report an issue </a>
+            </div>
           </div>
         </div>
-        <div class = "meal-result">
-          <h2 class = "title">Instructions:
-          </h2>
-          <div id= "">
-            <p>Step 1:</p><br>
-            <p>Step 2:</p><br>
-            <p>Step 3:</p><br>
-            <p>Step 4:</p><br>
-            <p>Step 5:</p>
-        </div>
+
+        <div class="navbar-end"></div>
       </div>
+    </nav>
+    <section class="hero">
+      <div class="hero-inner">
+        <h1>Take a Look!</h1>
+        <h2>
+          Here at team-AllCoast we offer the best recipes for your activities
+        </h2>
+        <a href="#instructions" class="btn">Click Me!</a>
+      </div>
+    </section>
+
+    <div id="instructions">
+      <h2 class="title">Instructions:</h2>
+      <div id="">
+        <p>Step 1: Please enter your name and weight and hit the "Save Info" button.</p>
+        <br />
+        <p>Step 2: Please select an activity from the drop down that you would like to perform in order to burn of the calories you consumed from your recipe of choice (you will select later).</p>
+        <br />
+        <p>Step 3: Please input a specific type of food or recipe you would like to browse recipes for. An example would be "chicken."</p>
+        <br />
+        <p>Step 4: After your personal information has been saved and you have selected an activity and input a type of food, please hite the "Submit Recipe" button.</p>
+        <br />
+        <p>Step 5: A list or recipes will load with information on how long it will take you to burn off those calories based on the activity you chose.</p>
+        <br />
+        <p>Step 6: To view the list of ingredients, click on the "Ingredients" button.</p>
+        <br />
+        <p>Step 7: The ingredients list will also include a link to the recipe page with step-by-step information on how to make the recipe.</p>
+        <br />
+        <p>Step 7: Enjoy!</p>
+        <br />
+      </div>
+    </div>
     <h3>Food Calories vs. Activity Calories</h3>
-
-    <!-- <form method="post">
-      <input type="text" id="userActivity" />
-      <button id="submitButton" type="submit">SUBMIT</button>
-    </form> -->
     <div id="welcomeMessage"></div>
-    <table style="border: 1px solid black">
-      <tr>
-        <th>Personal Information</th>
-        <th>Activity</th>
-        <th>Recipe</th>
-      </tr>
-      <form>
-        <td>
-          <label for="">Name:</label>
-          <input type="text" name="name" id="userName">
-          <br>
-          <label for="">Weight:</label>
-          <input type="text" name="weight" id="userWeight">
-          <button id="userInfoButton">SAVE INFO</button>
-        </td>
-        </form>
+
+    <div class="container">
+      <table class="mainTable">
+          <tbody id="infoBox">
+            <tr>
+              <th>Personal Information</th>
+              <th>Activity</th>
+              <th>Recipe</th>
+            </tr>
+            <form class="userInfo">
+              <td id="personalInfo">
+                <label for="userName">Name:</label>
+                <input type="text" name="name" id="userName" />
+                <!-- <br /> -->
+                <label for="">Weight:</label>
+                <input type="text" name="weight" id="userWeight" />
+                <button id="userInfoButton">SAVE INFO</button>
+              </td>
+            </form>
+            <form>
+              <td>
+                <label for="activitySelect">Choose Activity:</label>
+                <select id="activitySelect" name="activity" required>
+                  <option disabled selected value="">--Pick an Activity--</option>
+                </select>
+              </td>
+              <td>
+                <div id="recipe"></div>
+                <label for="recipeInput">Choose recipe:</label>
+                <input id="recipeInput" name="chooseRecipe" type="text" required />
+                <button id="recipeSubmitButton">Submit Recipe</button>
+              </td>
+            </form>
+          </tbody>
+        <tr>
+          <td>
+            <div id="recipeResults"></div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <footer class="footer">
+      <div class="col-1">
+        <h3>Links</h3>
+        <a href="#">About</a>
+        <a href="#">Activity</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+        <a href="#">Info</a>
+      </div>
+      <div class="col-2">
+        <h3>NEWLETTER</h3>
         <form>
-        <td>
-          <label for="activitySelect">Choose Activity:</label>
-          <select id="activitySelect" name="activity" required>
-            <option disabled selected value="">--Pick an Activity--</option>
-          </select>
-          <!-- <div id="errorMessage1" style="color: red; display: none;"></div> -->
-          <!-- <button id="activitySubmitButton">Submit Activity</button> -->
-        </td>
-        <td>
-          <div id="recipe"></div>
-          <label for="recipeInput">Choose recipe:</label>
-          <input id="recipeInput" name="chooseRecipe" type="text" required>
-          <!-- <div id="errorMessage2" style="color: red; display: none;"></div> -->
-          <button id="recipeSubmitButton">Submit Recipe</button>
-
-        </td>
-      </form>
-      <tr>
-        <td>
-          <div id="recipeResults"></div>
-        </td>
-        <!-- <td>
-          <div id="result"></div>
-        </td> -->
-      </tr>
-    </table>
-
+          <input type="text" placeholder="Your Email Address" />
+          <br />
+          <button type="submit">SUBSCRIBE NOW</button>
+        </form>
+      </div>
+      <div class="col-3">
+        <h3>Contact</h3>
+        <p>
+          Here is our address, or wherever we want to pick, idk just here for
+          points
+        </p>
+      </div>
+    </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="./assets/script.js"></script>
-    <footer>
-      <p>About Us: Gavin, Rachel & Patric<br>
-      <a href="email@example.com">email@example.com</a></p>
-    </footer>
+
   </body>
 </html>

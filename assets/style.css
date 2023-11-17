@@ -5,8 +5,49 @@ body {
   font-size: 1.05rem;
   line-height: 1.6;
   font-family: "Poppins", sans-serif;
+  background-color: whitesmoke
 }
 
+.hero {
+  /* Sizing */
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: url(https://i.postimg.cc/vH0GNnKp/lily-banse-YHSwy6uqvk-unsplash.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.hero h1 {
+  /* Text styles */
+  font-size: 5em;
+  color: white;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  text-shadow: 4px 4px black;
+}
+.hero h2 {
+  color: white;
+  text-shadow: 2px 2px black;
+}
+.hero .btn {
+  display: block;
+  width: 200px;
+  padding: 1em;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  text-decoration: none;
+  font-size: 1.5em;
+  border: 3px solid white;
+  border-radius: 20px;
+  background-color: rgba(147, 112, 219, 0.8);
+}
 .topnav {
   overflow: hidden;
   background-color: #333;
@@ -38,6 +79,8 @@ body {
   border: none;
   font-size: 17px;
 }
+
+
 @media screen and (max-width: 600px) {
   .topnav a,
   .topnav input[type="text"] {
@@ -51,13 +94,42 @@ body {
   .topnav input[type="text"] {
     border: 1px solid #ccc;
   }
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}  
+
 }
-footer {
+.footer{
+  margin-top: 150px;
+  width: 100%;
+  padding: 100px 15%;
+  background: #333;
+  color: #efefef;
+  display: flex;
+}
+
+.footer div {
   text-align: center;
-  padding: 3px;
-  background-color: #333;
-  color: white;
 }
+.col-2 {
+  flex-grow: 2;
+}
+.footer div h3 {
+  font-weight: 300;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+.col-1 a {
+  display: block;
+  text-decoration: none;
+  color: #efefef;
+  margin-bottom: 10px;
+}
+
 label {
   text-align: center;
 }
@@ -78,60 +150,57 @@ label {
 }
 .title {
   font-size: 2rem;
-  margin-bottom: 1rem;
+  margin: 1rem;
+  padding: 2em;
 }
 
-/*  */
-.container {
-  min-height: 100vh;
+#instructions {
+  margin: 1rem;
+  padding: 1em;
 }
-.meal-wrapper {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  background: #fff;
+
+#welcomeMessage {
   text-align: center;
+  font-size: 2em;
 }
-.meal-search {
-  margin: 2rem 0;
+
+
+
+.userInfo {
+  align-content: center;
 }
-.meal-search cite {
-  font-size: 1rem;
+
+.mainTable {
+  border: 1px solid black;
+  width: 100%; 
+  border-collapse: collapse;
 }
-.meal-search-box {
-  margin: 1.2rem 0;
+
+.mainTable th {
+  text-align: center; 
+  vertical-align: middle; 
+  padding: 1em;
+
+}
+
+.mainTable td {
+  text-align: center; 
+  vertical-align: middle; 
+  padding: 1em;
+}
+
+.mainTable button {
+  padding: .5em;
+  display: inline-block;
+
+}
+
+.container {
   display: flex;
-  align-items: stretch;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+  padding: 1em;
+ 
 }
-.search-control,
-.search-btn {
-  width: 100%;
-}
-.search-control {
-  padding: 0 1rem;
-  font-size: 1.1rem;
-  font-family: inherit;
-  outline: 0;
-  border: 1px solid var(--tenne-tawny);
-  color: var(--tenne-tawny);
-  border-top-left-radius: 2rem;
-  border-bottom-left-radius: 2rem;
-}
-.search-control::placeholder {
-  color: var(--tenne-tawny);
-}
-.search-btn {
-  width: 55px;
-  height: 55px;
-  font-size: 1.8rem;
-  background: var(--tenne-tawny);
-  color: #fff;
-  border: none;
-  border-top-right-radius: 2rem;
-  border-bottom-right-radius: 2rem;
-  transition: all 0.4s linear;
-  -webkit-transition: all 0.4s linear;
-  -moz-transition: all 0.4s linear;
-  -ms-transition: all 0.4s linear;
-  -o-transition: all 0.4s linear;
-}
+
