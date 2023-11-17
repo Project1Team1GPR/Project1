@@ -67,23 +67,49 @@
     </section>
 
     <div id="instructions">
-      <h2 class="title">Instructions:</h2>
+      <h2 class="title">How to Use the Application:</h2>
       <div id="">
-        <p>Step 1: Please enter your name and weight and hit the "Save Info" button.</p>
+        <p>
+          <strong>Step 1:</strong> Please enter your name and weight and hit the
+          "Save Info" button.
+        </p>
         <br />
-        <p>Step 2: Please select an activity from the drop down that you would like to perform in order to burn of the calories you consumed from your recipe of choice (you will select later).</p>
+        <p>
+          <strong>Step 2:</strong> Please select an activity from the drop down
+          that you would like to perform in order to burn of the calories you
+          consumed from your recipe of choice (you will select later).
+        </p>
         <br />
-        <p>Step 3: Please input a specific type of food or recipe you would like to browse recipes for. An example would be "chicken."</p>
+        <p>
+          <strong>Step 3:</strong> Please input a specific type of food or
+          recipe you would like to browse recipes for. An example would be
+          "chicken."
+        </p>
         <br />
-        <p>Step 4: After your personal information has been saved and you have selected an activity and input a type of food, please hite the "Submit Recipe" button.</p>
+        <p>
+          <strong>Step 4:</strong> After your personal information has been
+          saved and you have selected an activity and input a type of food,
+          please hite the "Submit Recipe" button.
+        </p>
         <br />
-        <p>Step 5: A list or recipes will load with information on how long it will take you to burn off those calories based on the activity you chose.</p>
+        <p>
+          <strong>Step 5:</strong> A list or recipes will load with information
+          on how long it will take you to burn off those calories based on the
+          activity you chose.
+        </p>
         <br />
-        <p>Step 6: To view the list of ingredients, click on the "Ingredients" button.</p>
+        <p>
+          <strong>Step 6:</strong> To view the list of ingredients, click on the
+          "Ingredients" button.
+        </p>
         <br />
-        <p>Step 7: The ingredients list will also include a link to the recipe page with step-by-step information on how to make the recipe.</p>
+        <p>
+          <strong>Step 7:</strong> The ingredients list will also include a link
+          to the recipe page with step-by-step information on how to make the
+          recipe.
+        </p>
         <br />
-        <p>Step 7: Enjoy!</p>
+        <p><strong>Step 8:</strong> Enjoy!</p>
         <br />
       </div>
     </div>
@@ -92,43 +118,57 @@
 
     <div class="container">
       <table class="mainTable">
-          <tbody id="infoBox">
-            <tr>
-              <th>Personal Information</th>
-              <th>Activity</th>
-              <th>Recipe</th>
-            </tr>
-            <form class="userInfo">
-              <td id="personalInfo">
+        <tbody id="infoBox">
+          <tr id="dataHeadings">
+            <th>Personal Information</th>
+            <th>Activity</th>
+            <th>Recipe</th>
+          </tr>
+          <tr>
+            <td>
+              <form class="userInfo" id="personalInfo">
                 <label for="userName">Name:</label>
                 <input type="text" name="name" id="userName" />
                 <!-- <br /> -->
-                <label for="">Weight:</label>
+                <label for="weight">Weight:</label>
                 <input type="text" name="weight" id="userWeight" />
                 <button id="userInfoButton">SAVE INFO</button>
-              </td>
-            </form>
-            <form>
-              <td>
+              </form>
+            </td>
+            <td>
+              <form>
                 <label for="activitySelect">Choose Activity:</label>
                 <select id="activitySelect" name="activity" required>
-                  <option disabled selected value="">--Pick an Activity--</option>
+                  <option disabled selected value="">
+                    --Pick an Activity--
+                  </option>
                 </select>
-              </td>
-              <td>
-                <div id="recipe"></div>
+              </form>
+            </td>
+            <td>
+              <form>
                 <label for="recipeInput">Choose recipe:</label>
-                <input id="recipeInput" name="chooseRecipe" type="text" required />
+                <input
+                  id="recipeInput"
+                  name="chooseRecipe"
+                  type="text"
+                  required
+                />
                 <button id="recipeSubmitButton">Submit Recipe</button>
-              </td>
-            </form>
-          </tbody>
-        <tr>
-          <td>
-            <div id="recipeResults"></div>
-          </td>
-        </tr>
+              </form>
+            </td>
+          </tr>
+        </tbody>
       </table>
+    </div>
+    <div>
+      <tr>
+        <td>
+          <div id="recipeContainer">
+            <div id="recipeResults"></div>
+          </div>
+        </td>
+      </tr>
     </div>
     <footer class="footer">
       <div class="col-1">
@@ -159,6 +199,5 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="./assets/script.js"></script>
-
   </body>
 </html>

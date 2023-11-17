@@ -20,21 +20,6 @@ var recipeResultsEl = document.getElementById("recipeResults");
 var welcomeUserEl = document.getElementById("welcomeUser");
 var userPersonalInfo = document.getElementById("personalInfo");
 
-
-// step 1- user selects recipe, user gets # of calories needed to be burned - api spoon
-// Step 2- user selects activity type from drop down list
-// Step 3- user inputs weight
-// step 2 and 3 data weight and activity -- use api cal lto api ninjas -- trying to get the number of cals burned / min based on user's weight and selected activity
-
-// Update Project Flow
-// 1. Collect User Info - profile should welcome user back or give option to update user info
-// 2. Search for recipe
-// 3. Select recipe
-// 4. take total cals from selected recipe to help determine total duration of selected activity
-
-// Things to make this better with time:
-// Have all of the submitted info under one event listener.. the submit recipe button (if statments or else error message)
-
 // Function to display the welcome message
 function displayWelcomeMessage() {
   // Retrieve user information from localStorage
@@ -46,15 +31,9 @@ function displayWelcomeMessage() {
 
     // Update the HTML element to display the welcome message
     const welcomeMessage = document.getElementById("welcomeMessage");
-    welcomeMessage.textContent = `Welcome, ${userName}!`; // Update with the user's name
-
+    welcomeMessage.textContent = `Welcome back, ${userName}!`; // Update with the user's name
   }
 }
-
-// Call the function to display the welcome message when the page loads
-// document.addEventListener('DOMContentLoaded', function() {
-//   displayWelcomeMessage();
-// });
 
 window.addEventListener("load", displayWelcomeMessage);
 
@@ -98,12 +77,12 @@ userInfoButtonEl.addEventListener("click", function (event) {
 userActivitySelect.addEventListener("change", function (event) {
   event.preventDefault();
   console.log(event.target.value);
-  
+
   var userWeightFromStorage = localStorage.getItem("userInfo");
 
   if (userWeightFromStorage) {
     var userWeight = JSON.parse(userWeightFromStorage)[1];
-   } else {
+  } else {
     // If the user weight is missing, show a message on the browser
     var weightErrorMessage = document.createElement("div");
     weightErrorMessage.textContent = "Please fill out your name and weight.";
@@ -111,15 +90,17 @@ userActivitySelect.addEventListener("change", function (event) {
     document.body.appendChild(weightErrorMessage);
     console.error("User weight is missing");
 
-    var personalInfoInput =
-      document.getElementById("userName").parentNode;
-    personalInfoInput.insertBefore(weightErrorMessage, personalInfoInput.firstChild);
+    var personalInfoInput = document.getElementById("userName").parentNode;
+    personalInfoInput.insertBefore(
+      weightErrorMessage,
+      personalInfoInput.firstChild
+    );
+  }
+  console.log(userWeight);
+  var caloriesBurnedUrl = `https://api.api-ninjas.com/v1/caloriesburned?activity=${event.target.value.substring(
+    1
+  )}&duration=60&weight=${userWeight}`;
 
-   }
-console.log(userWeight);
-  var caloriesBurnedUrl = `https://api.api-ninjas.com/v1/caloriesburned?activity=${event.target.value.substring(1)}&duration=60&weight=${userWeight}`;
-
-  
   fetch(caloriesBurnedUrl, {
     headers: {
       "X-Api-Key": "Wjicx6SkiBem7pplQibm7g==wVPkDcY9lX6RAcn0",
@@ -167,6 +148,7 @@ async function getCaloriesByRecipeId(id) {
 
   return nutritionData;
 }
+
 function appendRecipeResults(recipeResultsEl, recipes) {
   recipes.forEach(function (recipe) {
     console.log(recipe);
@@ -181,9 +163,6 @@ function appendRecipeResults(recipeResultsEl, recipes) {
       <button data-id="${recipe.id}">Ingredients</button>
       <div data-ingr="${recipe.id}" id="recipeIngredientList"></div>
       `;
-
-    // DELETE
-    // <p>Calories Burned per Minute for Selected Activity: ${caloriesPerMinute ? caloriesPerMinute.toFixed(2) : 'Select an activity'}</p>
 
     recipeResultsEl.appendChild(recipeEl);
     console.log(recipe);
@@ -204,15 +183,12 @@ function displayIngredientsList(ingredients, recipeId, recipeUrl) {
     var li = document.createElement("li");
     li.textContent = `${ingredient.amount} ${ingredient.unit} ${ingredient.name}`;
     ul.appendChild(li);
-
-    
   });
-  var selectedRecipeUrl = `<a href=${recipeUrl} target=blank>Click here for full recipe</a>`
-  var urlLi = document.createElement('li')
-  urlLi.innerHTML = selectedRecipeUrl
-  ingredientListEl.append(urlLi)
+  var selectedRecipeUrl = `<a href=${recipeUrl} target=blank>Click here for full recipe & instructions</a>`;
+  var urlLi = document.createElement("li");
+  urlLi.innerHTML = selectedRecipeUrl;
+  ingredientListEl.append(urlLi);
   ingredientListEl.append(ul);
-
 }
 
 // event listener for ingredients
@@ -241,10 +217,12 @@ async function getIngredientsById(id) {
   return nutritionData;
 }
 
-async function getHowToUrl(id){
-var howToMakeRecipeUrl = await fetch(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3`);
-var jsonhowToMakeRecipeUrl = await howToMakeRecipeUrl.json();
-return(jsonhowToMakeRecipeUrl.sourceUrl);
+async function getHowToUrl(id) {
+  var howToMakeRecipeUrl = await fetch(
+    `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3`
+  );
+  var jsonhowToMakeRecipeUrl = await howToMakeRecipeUrl.json();
+  return jsonhowToMakeRecipeUrl.sourceUrl;
 }
 
 // submit recipe button on click
@@ -309,7 +287,6 @@ submitRecipeButtonEl.addEventListener("click", async function (event) {
   });
 });
 
-
-
-
-
+// Things to make this better with time:
+// Have all of the submitted info under one event listener.. the submit recipe button (if statments or else error message)
+// Change ingredient decimals into fractions
