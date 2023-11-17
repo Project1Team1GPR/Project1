@@ -18,6 +18,8 @@ var userNameInput = "";
 var userWeightInput = "";
 var recipeResultsEl = document.getElementById("recipeResults");
 var welcomeUserEl = document.getElementById("welcomeUser");
+var userPersonalInfo = document.getElementById("personalInfo");
+
 
 // step 1- user selects recipe, user gets # of calories needed to be burned - api spoon
 // Step 2- user selects activity type from drop down list
@@ -30,6 +32,9 @@ var welcomeUserEl = document.getElementById("welcomeUser");
 // 3. Select recipe
 // 4. take total cals from selected recipe to help determine total duration of selected activity
 
+// Things to make this better with time:
+// Have all of the submitted info under one event listener.. the submit recipe button (if statments or else error message)
+
 // Function to display the welcome message
 function displayWelcomeMessage() {
   // Retrieve user information from localStorage
@@ -41,7 +46,8 @@ function displayWelcomeMessage() {
 
     // Update the HTML element to display the welcome message
     const welcomeMessage = document.getElementById("welcomeMessage");
-    welcomeMessage.textContent = `Welcome back, ${userName}!`; // Update with the user's name
+    welcomeMessage.textContent = `Welcome, ${userName}!`; // Update with the user's name
+
   }
 }
 
@@ -78,6 +84,7 @@ function activityList() {
 activityList();
 
 userInfoButtonEl.addEventListener("click", function (event) {
+  event.preventDefault();
   console.log("Save Info");
   var userInfo = [
     (userNameInput = userNameEl.value),
@@ -91,16 +98,28 @@ userInfoButtonEl.addEventListener("click", function (event) {
 userActivitySelect.addEventListener("change", function (event) {
   event.preventDefault();
   console.log(event.target.value);
+  
+  var userWeightFromStorage = localStorage.getItem("userInfo");
 
-  var userWeight = JSON.parse(localStorage.getItem("userInfo"))[1];
-  //  if (!userWeight) {
+  if (userWeightFromStorage) {
+    var userWeight = JSON.parse(userWeightFromStorage)[1];
+   } else {
+    // If the user weight is missing, show a message on the browser
+    var weightErrorMessage = document.createElement("div");
+    weightErrorMessage.textContent = "Please fill out your name and weight.";
+    weightErrorMessage.style.color = "red";
+    document.body.appendChild(weightErrorMessage);
+    console.error("User weight is missing");
 
-  //  }
+    var personalInfoInput =
+      document.getElementById("userName").parentNode;
+    personalInfoInput.insertBefore(weightErrorMessage, personalInfoInput.firstChild);
 
-  var caloriesBurnedUrl = `https://api.api-ninjas.com/v1/caloriesburned?activity=${event.target.value.substring(
-    1
-  )}&duration=60&weight=${userWeight}`;
+   }
+console.log(userWeight);
+  var caloriesBurnedUrl = `https://api.api-ninjas.com/v1/caloriesburned?activity=${event.target.value.substring(1)}&duration=60&weight=${userWeight}`;
 
+  
   fetch(caloriesBurnedUrl, {
     headers: {
       "X-Api-Key": "Wjicx6SkiBem7pplQibm7g==wVPkDcY9lX6RAcn0",
@@ -172,7 +191,7 @@ function appendRecipeResults(recipeResultsEl, recipes) {
 }
 
 // convert ingredient amount to fractions
-function displayIngredientsList(ingredients, recipeId) {
+function displayIngredientsList(ingredients, recipeId, recipeUrl) {
   console.log(ingredients.ingredients);
   var ingredientListEl = $(`[data-ingr='${recipeId}']`); //jquery selector for div of listofingredients
   var ul = document.createElement("ul");
@@ -185,8 +204,15 @@ function displayIngredientsList(ingredients, recipeId) {
     var li = document.createElement("li");
     li.textContent = `${ingredient.amount} ${ingredient.unit} ${ingredient.name}`;
     ul.appendChild(li);
+
+    
   });
+  var selectedRecipeUrl = `<a href=${recipeUrl} target=blank>Click here for full recipe</a>`
+  var urlLi = document.createElement('li')
+  urlLi.innerHTML = selectedRecipeUrl
+  ingredientListEl.append(urlLi)
   ingredientListEl.append(ul);
+
 }
 
 // event listener for ingredients
@@ -198,7 +224,8 @@ $("#recipeResults").on("click", "button", async function (event) {
 
   var ingredients = await getIngredientsById(recipeId);
   // console.log(ingredients.ingredients);
-  displayIngredientsList(ingredients, recipeId);
+  var recipeUrl = await getHowToUrl(recipeId);
+  displayIngredientsList(ingredients, recipeId, recipeUrl);
 });
 
 async function getIngredientsById(id) {
@@ -212,6 +239,12 @@ async function getIngredientsById(id) {
   const nutritionData = await response2.json();
 
   return nutritionData;
+}
+
+async function getHowToUrl(id){
+var howToMakeRecipeUrl = await fetch(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=63c92a06cbdb4547b9f28e0fcbc3c5c3`);
+var jsonhowToMakeRecipeUrl = await howToMakeRecipeUrl.json();
+return(jsonhowToMakeRecipeUrl.sourceUrl);
 }
 
 // submit recipe button on click
@@ -275,3 +308,8 @@ submitRecipeButtonEl.addEventListener("click", async function (event) {
     errorMessage2.style.display = "none";
   });
 });
+
+
+
+
+
