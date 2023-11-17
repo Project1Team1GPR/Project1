@@ -45,6 +45,37 @@ function displayWelcomeMessage() {
   }
 }
 
+
+// Function to check if user's name and weight are entered
+function isUserInfoEntered() {
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  return userInfo && userInfo[0] && userInfo[1];
+}
+
+// Function to display an error message
+function displayErrorMessage(message) {
+  const errorDiv = document.createElement("div");
+  errorDiv.textContent = message;
+  errorDiv.style.color = "red";
+  document.body.insertBefore(errorDiv, document.body.firstChild);
+  setTimeout(() => errorDiv.remove(), 3000); // Remove the message after 3 seconds
+}
+
+// Modify the event listener for submitRecipeButtonEl
+submitRecipeButtonEl.addEventListener("click", async function (event) {
+  event.preventDefault();
+
+  // Check if user info is entered
+  if (!isUserInfoEntered()) {
+    displayErrorMessage("Please input name and weight first");
+    return; // Stop the function if no user info
+  }
+
+  // ... rest of the code for handling recipe submission ...
+});
+
+// Similar check can be applied to other event listeners where user info is required
+
 // Call the function to display the welcome message when the page loads
 // document.addEventListener('DOMContentLoaded', function() {
 //   displayWelcomeMessage();
@@ -179,7 +210,7 @@ function displayIngredientsList(ingredients, recipeId) {
   if (ingredientListEl.children().length > 0) {
     //check if ul in div
     ingredientListEl.toggle(); //toggle show or hide
-    return;
+    return; //nothing more to do
   }
   ingredients.ingredients.forEach((ingredient) => {
     var li = document.createElement("li");
