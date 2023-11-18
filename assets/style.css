@@ -226,6 +226,17 @@ label {
   justify-content: center;
   align-items: center;
   padding: 1em;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#recipeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  max-width: 1200px; /* Adjust this value as needed */
+  margin: 0 auto; /* centers container with equal margins on either side */
 }
 
 /* the below form is causing the error message to generate on the left of the section instead above. Trying to figure out how to keep this while moving error messages back to the top */
