@@ -290,3 +290,5 @@ submitRecipeButtonEl.addEventListener("click", async function (event) {
 // Things to make this better with time:
 // Have all of the submitted info under one event listener.. the submit recipe button (if statments or else error message)
 // Change ingredient decimals into fractions
+// Make the error message show up above everything instead of next to it
+

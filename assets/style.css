@@ -173,9 +173,11 @@ label {
 .mainTable {
   border: 5px solid black;
   width: 80%;
+  max-width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
   box-shadow: 2px 5px #aa04aa;
+  overflow-x: auto;
 }
 
 .mainTable th,
@@ -221,15 +223,14 @@ label {
   }
 }
 
-
-
-  #recipeContainer {
+#recipeContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 30px;
   max-width: 1200px; /* Adjust this value as needed */
   margin: 0 auto; /* centers container with equal margins on either side */
+  padding-top: 1em;
 }
 
 /* the below form is causing the error message to generate on the left of the section instead above. Trying to figure out how to keep this while moving error messages back to the top */
@@ -250,12 +251,13 @@ label {
   font-size: 2em;
 }
 
-#recipeContainer {
+/* the below is a duplicate and can be deleted */
+/* #recipeContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 30px;
-}
+} */
 
 #recipeResults {
   text-align: center;
