@@ -4,150 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project 1</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-    />
-    <link rel="stylesheet" href="./assets/style.css" />
-    <script src="https://kit.fontawesome.com/18be020e55.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="https://www.instagram.com/patric__star/">
-          <img src="Logo.png">
-        </a>
-        <a
-          role="button"
-          class="navbar-burger"
-          aria-label="menu"
-          aria-expanded="false"
-          data-target="navbarBasicExample">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-          <a class="navbar-item"> Home </a>
-          <a class="navbar-item"> Recipes </a>
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link"> More </a>
-            <div class="navbar-dropdown">
-              <a class="navbar-item"> About </a>
-              <a class="navbar-item"> News </a>
-              <a class="navbar-item"> Contact Us </a>
-              <a class="navbar-item"> Our Team </a>
-              <hr class="navbar-divider" />
-              <a class="navbar-item"> Report an issue </a>
-            </div>
-          </div>
-        </div>
-        <div class="navbar-end"></div>
-      </div>
-    </nav>
-    <section class="hero">
-      <div class="hero-inner">
-        <h1>Take a Look!</h1>
-        <h2>
-          Here at Recipe Fit we offer the best food for your activities
-        </h2>
-        <a href="#instructions" class="btn">Click Here!</a>
-      </div>
-    </section>
+    <h1>PROJECT 1</h1>
+    <h2>Team 1</h2>
+    <h3>Food Calorie vs. Activity Calorie</h3>
 
-    <div id="instructions">
-      <h2 class="title">How to Use the Application:</h2>
-      <div id="">
-        <p>
-          <strong>Step 1:</strong> Enter your name and weight, then click "Save
-          Info."
-        </p>
-        <br />
-        <p>
-          <strong>Step 2:</strong> Select an activity from the dropdown in order
-          to start burning calories.
-        </p>
-        <br />
-        <p>
-          <strong>Step 3:</strong> Type a food or recipe (e.g., "chicken") to
-          explore options in the recipe box.
-        </p>
-        <br />
-        <p>
-          <strong>Step 4:</strong> After saving your info and choosing an
-          activity, click "Submit Recipe."
-        </p>
-        <br />
-        <p>
-          <strong>Step 5:</strong> Browse recipes and see how long it takes to
-          burn off the calories with your activity.
-        </p>
-        <br />
-        <p>
-          <strong>Step 6:</strong> Click "Ingredients" on a recipe to view its
-          list.
-        </p>
-        <br />
-        <p>
-          <strong>Step 7:</strong> Find detailed recipe instructions via the
-          link in the ingredients list.
-        </p>
-        <br />
-        <p><strong>Step 8:</strong> Enjoy cooking and staying active!</p>
-        <br />
-      </div>
-    </div>
-    <!-- <h3>Food Calories vs. Activity Calories</h3> i don't think we still need this? -->
-    <div id="welcomeMessage"></div>
+    <!-- <form method="post">
+      <input type="text" id="userActivity" />
+      <button id="submitButton" type="submit">SUBMIT</button>
+    </form> -->
 
-    <div class="container">
-      <table class="mainTable">
-        <tbody id="infoBox">
-          <tr id="dataHeadings">
-            <th>Personal Information</th>
-            <th>Activity</th>
-            <th>Recipe</th>
-          </tr>
-          <tr>
-            <td>
-              <form class="userInfo" id="personalInfo">
-                <label for="userName">Name:</label>
-                <input type="text" name="name" id="userName" />
-                <!-- <br /> -->
-                <label for="weight">Weight:</label>
-                <input type="text" name="weight" id="userWeight" />
-                <button id="userInfoButton">SAVE INFO</button>
-              </form>
-            </td>
-            <td>
-              <form>
-                <label for="activitySelect">Choose Activity:</label>
-                <select id="activitySelect" name="activity" required>
-                  <option disabled selected value="">
-                    --Pick an Activity--
-                  </option>
-                </select>
-              </form>
-            </td>
-            <td>
-              <form>
-                <label for="recipeInput">Choose recipe:</label>
-                <input
-                  id="recipeInput"
-                  name="chooseRecipe"
-                  type="text"
-                  required
-                />
-                <button id="recipeSubmitButton">Submit Recipe</button>
-              </form>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div>
+    <table style="border: 1px solid black">
+      <tr>
+        <th>Recipe</th>
+        <th>Activity</th>
+      </tr>
+      <tr>
+        <td>
+          <div id="recipe"></div>
+          <label for="recipeInput">Choose recipe:</label>
+          <input id="recipeInput" name="chooseRecipe" type="text"></select>
+          <button id="recipeSubmitButton">Submit Recipe</button>
+        </td>
+        <td>
+          <label for="activitySelect">Choose Activity:</label>
+          <select id="activitySelect" name="activity"></select>
+          <button id="activitySubmitButton">Submit Activity</button>
+        </td>
+      </tr>
       <tr>
         <td>
           <div id="recipeContainer">
@@ -155,29 +40,12 @@
           </div>
         </td>
       </tr>
-    </div>
-    <footer class="footerContainer">
-      <div class="socialIcons">
-        <a href=""><i class="fa-brands fa-facebook"></i></a>
-        <a href=""><i class="fa-brands fa-instagram"></i></a>
-        <a href=""><i class="fa-brands fa-tiktok"></i></a>
-        <a href=""><i class="fa-brands fa-google"></i></a>
-        <a href=""><i class="fa-brands fa-youtube"></i></a>
-      </div>
-      <div class="footerNav">
-        <ul>
-          <li><a href="">Home</a></li>
-          <li><a href="">News</a></li>
-          <li><a href="">About</a></li>
-          <li><a href="">Contact Us, OR NOT</a></li>
-          <li><a href="">Our Team</a></li>
-        </ul>
-      </div>
-      <div class="footerBottom">
-        <p>Copyright &copy;2023; Designed by <span class="designer">Gavin, Rachel, & Patric</span></p>
-      </div>
-    </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="./assets/script.js"></script>
+    </table>
+
+    <!-- Options will be populated here -->
+
+    Weight: <input type="text" id="weight" />
+
+    <script src="script.js"></script>
   </body>
 </html>
