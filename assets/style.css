@@ -75,19 +75,21 @@ body {
   margin: 0;
   box-sizing: border-box;
 }
-footer{
+footer {
   background-color: #111;
+  margin-top: 150px;
+  padding: 2em;
 }
 
-.footerContainer{
+.footerContainer {
   width: 100%;
   padding: 70px 30px 20;
 }
-.socialIcons{
+.socialIcons {
   display: flex;
   justify-content: center;
 }
-.socialIcons a{
+.socialIcons a {
   text-decoration: none;
   padding: 10px;
   background-color: white;
@@ -95,32 +97,32 @@ footer{
   border-radius: 50%;
 }
 
-.socialIcons a i{
+.socialIcons a i {
   font-size: 2em;
   color: black;
   opacity: 0.9;
 }
 
-.socialIcons a:hover{
+.socialIcons a:hover {
   background-color: #111;
   transition: 0.5s;
 }
 
-.socialIcons a:hover i{
+.socialIcons a:hover i {
   color: white;
   transition: 0.5s;
 }
 
-.footerNav{
+.footerNav {
   margin: 30px 0;
 }
 
-.footerNav ul{
+.footerNav ul {
   display: flex;
   justify-content: center;
 }
 
-.footerNav ul li a{
+.footerNav ul li a {
   color: white;
   margin: 20px;
   text-decoration: none;
@@ -129,21 +131,21 @@ footer{
   transition: 0.5s;
 }
 
-.footerNav ul li a:hover{
+.footerNav ul li a:hover {
   opacity: 1;
 }
 
-.footerBottom{
+.footerBottom {
   background-color: #000;
   padding: 20px;
   text-align: center;
 }
 
-.footerBottom p{
+.footerBottom p {
   color: white;
 }
 
-.designer{
+.designer {
   opacity: 0.7;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -187,9 +189,11 @@ footer{
 .mainTable {
   border: 5px solid black;
   width: 80%;
+  max-width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
   box-shadow: 2px 5px #aa04aa;
+  overflow-x: auto;
 }
 
 .mainTable th,
@@ -235,15 +239,14 @@ footer{
   }
 }
 
-
-
-  #recipeContainer {
+#recipeContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 30px;
-  max-width: 1200px; /* Adjust this value as needed */
+  max-width: 1200px;
   margin: 0 auto; /* centers container with equal margins on either side */
+  padding: 1em;
 }
 
 /* the below form is causing the error message to generate on the left of the section instead above. Trying to figure out how to keep this while moving error messages back to the top */
@@ -262,13 +265,6 @@ label {
 #dataHeadings {
   text-align: center;
   font-size: 2em;
-}
-
-#recipeContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
 }
 
 #recipeResults {
