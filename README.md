@@ -233,6 +233,7 @@ GitHub Project Link: [https://github.com/Project1Team1GPR/Recipe-Fit](https://gi
 * [W3Schools](https://www.w3schools.com/)
 * Carlin Shaw - Tutor
 * ChatGPT 
+* Rich Hosek & Vince Teune - Instructor & TA
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
