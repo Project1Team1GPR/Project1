@@ -30,23 +30,22 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/Project1Team1GPR/Recipe-Fit">
+    <img src="./assets/images/Logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Recipe Fit</h3>
 
   <p align="center">
-    project_description
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Project1Team1GPR/Recipe-Fit"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="https://github.com/Project1Team1GPR/Recipe-Fit">View Demo</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/Project1Team1GPR/Recipe-Fit/issues">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/Project1Team1GPR/Recipe-Fit/issues">Request Feature</a>
   </p>
 </div>
 
@@ -83,9 +82,21 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Recipe Fit Deployed Link][product-screenshot]](https://project1team1gpr.github.io/Recipe-Fit/)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+<!-- Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `Project1Team1GPR`, `Recipe-Fit`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `Recipe Fit`, `project_description` -->
+
+Welcome to Recipe Fit, the all-in-one app that revolutionizes your journey to a healthier, fitter you! Whether you're a seasoned fitness enthusiast or just starting your wellness adventure, Explore an extensive recipe library, carefully curated to please your palate, and unlock personalized workout plans tailored just for you. Embark on a journey of wellness with Recipe Fit. Try it now and experience the perfect blend of fitness, nutrition, and community, all in one app! Your healthier, happier self is just a tap away.
+
+Our application is a great resource to help you determine how long of a specific exercise you need to perform in order to burn off the total calories of your recipe of choice.
+
+### User Story
+As a health-conscious user,<br>
+I want to be able to search for recipes that align with my specific nutritional requirements and informed how much activity is needed to burn off these calories,<br>
+So that I can maintain my diet and health goals without extensive manual research.
+
+### Screenshot
+![Alt text](assets/images/screenshot.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -129,7 +140,7 @@ This is an example of how to list things you need to use the software and how to
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/Project1Team1GPR/Recipe-Fit.git
    ```
 3. Install NPM packages
    ```sh
@@ -163,7 +174,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Feature 3
     - [ ] Nested Feature
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/Project1Team1GPR/Recipe-Fit/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
@@ -201,13 +212,13 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Gavin Meyer - gpmeyer24@gmail.com - GitHub: gmeyer24
 
-Rachel
+Rachel V - yesrjv@gmail.com - GitHub: 1122c
 
-Patric
+Patric Xiong - pathlub@gmail.com - GitHub: PatricXiong 
 
-Deployed Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Deployed Project Link: [https://project1team1gpr.github.io/Recipe-Fit/](https://project1team1gpr.github.io/Recipe-Fit/)
 
-GitHub Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+GitHub Project Link: [https://github.com/Project1Team1GPR/Recipe-Fit](https://github.com/Project1Team1GPR/Recipe-Fit)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -222,7 +233,7 @@ GitHub Project Link: [https://github.com/github_username/repo_name](https://gith
 * [W3Schools](https://www.w3schools.com/)
 * Carlin Shaw - Tutor
 * ChatGPT 
-* []()
+* Rich Hosek & Vince Teune - Instructor & TA
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -230,16 +241,16 @@ GitHub Project Link: [https://github.com/github_username/repo_name](https://gith
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/Project1Team1GPR/Recipe-Fit.svg?style=for-the-badge
+[contributors-url]: https://github.com/Project1Team1GPR/Recipe-Fit/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Project1Team1GPR/Recipe-Fit.svg?style=for-the-badge
+[forks-url]: https://github.com/Project1Team1GPR/Recipe-Fit/network/members
+[stars-shield]: https://img.shields.io/github/stars/Project1Team1GPR/Recipe-Fit.svg?style=for-the-badge
+[stars-url]: https://github.com/Project1Team1GPR/Recipe-Fit/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Project1Team1GPR/Recipe-Fit.svg?style=for-the-badge
+[issues-url]: https://github.com/Project1Team1GPR/Recipe-Fit/issues
+[license-shield]: https://img.shields.io/github/license/Project1Team1GPR/Recipe-Fit.svg?style=for-the-badge
+[license-url]: https://github.com/Project1Team1GPR/Recipe-Fit/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: images/screenshot.png

@@ -1,13 +1,9 @@
 var activity = document.getElementById("activity");
-// var userActivityInput = document.getElementById("userActivity");
 var submitButtonEl = document.getElementById("submitButton");
 var userActivitySelect = document.getElementById("activitySelect");
-// var submitActivityButtonEl = document.getElementById("activitySubmitButton");
 var submitRecipeButtonEl = document.getElementById("recipeSubmitButton");
 var userWeightInput = document.getElementById("weight");
-// var durationEl = document.getElementById("duration");
 var resultEl = document.getElementById("result");
-// var calories = 1000;
 var recipeSelect = document.getElementById("recipeSelect");
 var caloriesPerMinute = 1;
 var userSelectedActivity = "";

@@ -8,19 +8,23 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
     />
+    <script
+      src="https://kit.fontawesome.com/18be020e55.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav
+      id="home"
+      class="navbar"
+      role="navigation"
+      aria-label="main navigation"
+    >
       <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-          <img
-            src="https://bulma.io/images/bulma-logo.png"
-            width="112"
-            height="28"
-          />
+        <a class="navbar-item" href="https://www.instagram.com/patric__star/">
+          <img src="./assets/images/Logo.png" />
         </a>
-
         <a
           role="button"
           class="navbar-burger"
@@ -36,19 +40,25 @@
 
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item"> Home </a>
-
-          <a class="navbar-item"> Documentation </a>
-
+          <a href="#instructions" class="navbar-item"> Instructions </a>
+          <a href="#infoBox" class="navbar-item"> Use the App </a>
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link"> More </a>
 
             <div class="navbar-dropdown">
-              <a class="navbar-item"> About </a>
-              <a class="navbar-item"> Jobs </a>
-              <a class="navbar-item"> Contact </a>
+              <a
+                href="https://github.com/Project1Team1GPR/Recipe-Fit"
+                class="navbar-item"
+              >
+                GitHub Pages
+              </a>
               <hr class="navbar-divider" />
-              <a class="navbar-item"> Report an issue </a>
+              <a
+                href="https://github.com/Project1Team1GPR/Recipe-Fit/issues"
+                class="navbar-item"
+              >
+                Report an issue
+              </a>
             </div>
           </div>
         </div>
@@ -58,14 +68,13 @@
     </nav>
     <section class="hero">
       <div class="hero-inner">
-        <h1>Take a Look!</h1>
+        <h1>Recipe Fit</h1>
         <h2>
-          Here at team-AllCoast we offer the best recipes for your activities
+          Here at Recipe Fit we offer the best recipes for your activities
         </h2>
-        <a href="#instructions" class="btn">Click Me!</a>
+        <a href="#instructions" class="btn">Get Started!</a>
       </div>
     </section>
-
     <div id="instructions">
       <h2 class="title">How to Use the Application:</h2>
       <div id="">
@@ -165,32 +174,32 @@
         </td>
       </tr>
     </div>
-    <footer class="footer">
-      <div class="col-1">
-        <h3>Links</h3>
-        <a href="#">About</a>
-        <a href="#">Activity</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
-        <a href="#">Info</a>
+    <footer>
+      <div class="footerContainer">
+        <div class="socialIcons">
+          <a href=""><i class="fa-brands fa-facebook"></i></a>
+          <a href=""><i class="fa-brands fa-youtube"></i></a>
+          <a href=""><i class="fa-brands fa-instagram"></i></a>
+          <a href=""><i class="fa-brands fa-tiktok"></i></a>
+          <a href=""><i class="fa-brands fa-google"></i></a>
+        </div>
       </div>
-      <div class="col-2">
-        <h3>NEWLETTER</h3>
-        <form>
-          <input type="text" placeholder="Your Email Address" />
-          <br />
-          <button type="submit">SUBSCRIBE NOW</button>
-        </form>
+      <div class="footerNav">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="">Food</a></li>
+          <li><a href="">About</a></li>
+          <li><a href="">Contact Us</a></li>
+          <li><a href="">Our Team</a></li>
+        </ul>
       </div>
-      <div class="col-3">
-        <h3>Contact</h3>
+      <div class="footerBottom">
         <p>
-          Here is our address, or wherever we want to pick, idk just here for
-          points
+          Copyright &copy;2023; Designed by
+          <span class="develop">Gavin, Rachel, Patric</span>
         </p>
       </div>
     </footer>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="./assets/script.js"></script>
