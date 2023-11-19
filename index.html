@@ -6,23 +6,32 @@
     <title>Project 1</title>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
-      <script src="https://kit.fontawesome.com/18be020e55.js" crossorigin="anonymous"></script>
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/18be020e55.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav
+      id="home"
+      class="navbar"
+      role="navigation"
+      aria-label="main navigation"
+    >
       <div class="navbar-brand">
         <a class="navbar-item" href="https://www.instagram.com/patric__star/">
-          <img
-            src="./assets/images/Logo.png"/>
+          <img src="./assets/images/Logo.png" />
         </a>
         <a
           role="button"
           class="navbar-burger"
           aria-label="menu"
           aria-expanded="false"
-          data-target="navbarBasicExample">
+          data-target="navbarBasicExample"
+        >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -31,17 +40,25 @@
 
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item"> Home </a>
-          <a class="navbar-item"> Recipes </a>
+          <a href="#instructions" class="navbar-item"> Instructions </a>
+          <a href="#infoBox" class="navbar-item"> Use the App </a>
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link"> More </a>
 
             <div class="navbar-dropdown">
-              <a class="navbar-item"> Food </a>
-              <a class="navbar-item"> Jobs </a>
-              <a class="navbar-item"> Contact </a>
+              <a
+                href="https://github.com/Project1Team1GPR/Recipe-Fit"
+                class="navbar-item"
+              >
+                GitHub Pages
+              </a>
               <hr class="navbar-divider" />
-              <a class="navbar-item"> Report an issue </a>
+              <a
+                href="https://github.com/Project1Team1GPR/Recipe-Fit/issues"
+                class="navbar-item"
+              >
+                Report an issue
+              </a>
             </div>
           </div>
         </div>
@@ -158,28 +175,31 @@
       </tr>
     </div>
     <footer>
-    <div class="footerContainer">
-      <div class="socialIcons">
-        <a href=""><i class="fa-brands fa-facebook"></i></a>
-        <a href=""><i class="fa-brands fa-youtube"></i></a>
-        <a href=""><i class="fa-brands fa-instagram"></i></a>
-        <a href=""><i class="fa-brands fa-tiktok"></i></a>
-        <a href=""><i class="fa-brands fa-google"></i></a>
+      <div class="footerContainer">
+        <div class="socialIcons">
+          <a href=""><i class="fa-brands fa-facebook"></i></a>
+          <a href=""><i class="fa-brands fa-youtube"></i></a>
+          <a href=""><i class="fa-brands fa-instagram"></i></a>
+          <a href=""><i class="fa-brands fa-tiktok"></i></a>
+          <a href=""><i class="fa-brands fa-google"></i></a>
+        </div>
       </div>
-    </div>
-    <div class="footerNav">
-      <ul>
-        <li><a href="">Home</a></li>
-        <li><a href="">Food</a></li>
-        <li><a href="">About</a></li>
-        <li><a href="">Contact Us</a></li>
-        <li><a href="">Our Team</a></li>
-      </ul>
-    </div>
-    <div class="footerBottom">
-      <p>Copyright &copy;2023; Designed by <span class="develop">Gavin, Rachel, Patric</span></p>
-    </div>
-  </footer>
+      <div class="footerNav">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="">Food</a></li>
+          <li><a href="">About</a></li>
+          <li><a href="">Contact Us</a></li>
+          <li><a href="">Our Team</a></li>
+        </ul>
+      </div>
+      <div class="footerBottom">
+        <p>
+          Copyright &copy;2023; Designed by
+          <span class="develop">Gavin, Rachel, Patric</span>
+        </p>
+      </div>
+    </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="./assets/script.js"></script>

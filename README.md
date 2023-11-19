@@ -95,6 +95,8 @@ As a health-conscious user,<br>
 I want to be able to search for recipes that align with my specific nutritional requirements and informed how much activity is needed to burn off these calories,<br>
 So that I can maintain my diet and health goals without extensive manual research.
 
+### Screenshot
+![Alt text](assets/images/screenshot.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
