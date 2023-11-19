@@ -1,0 +1,283 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  font-family: "Poppins", sans-serif;
+  background-color: whitesmoke;
+}
+
+.hero {
+  /* Sizing */
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: url(https://i.postimg.cc/vH0GNnKp/lily-banse-YHSwy6uqvk-unsplash.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.hero h1 {
+  /* Text styles */
+  font-size: 5em;
+  color: white;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  text-shadow: 4px 4px black;
+}
+.hero h2 {
+  color: white;
+  text-shadow: 2px 2px black;
+}
+.hero .btn {
+  display: block;
+  width: 200px;
+  padding: 1em;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  text-decoration: none;
+  font-size: 1.5em;
+  border: 3px solid white;
+  border-radius: 20px;
+  background-color: rgba(147, 112, 219, 0.8);
+}
+@media screen and (max-width: 600px) {
+  .body,
+  .body[type="text"] {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type="text"] {
+    border: 1px solid #ccc;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+footer{
+  background-color: #111;
+}
+
+.footerContainer{
+  width: 100%;
+  padding: 70px 30px 20;
+}
+.socialIcons{
+  display: flex;
+  justify-content: center;
+}
+.socialIcons a{
+  text-decoration: none;
+  padding: 10px;
+  background-color: white;
+  margin: 10px;
+  border-radius: 50%;
+}
+
+.socialIcons a i{
+  font-size: 2em;
+  color: black;
+  opacity: 0.9;
+}
+
+.socialIcons a:hover{
+  background-color: #111;
+  transition: 0.5s;
+}
+
+.socialIcons a:hover i{
+  color: white;
+  transition: 0.5s;
+}
+
+.footerNav{
+  margin: 30px 0;
+}
+
+.footerNav ul{
+  display: flex;
+  justify-content: center;
+}
+
+.footerNav ul li a{
+  color: white;
+  margin: 20px;
+  text-decoration: none;
+  font-size: 1.3em;
+  opacity: 0.7;
+  transition: 0.5s;
+}
+
+.footerNav ul li a:hover{
+  opacity: 1;
+}
+
+.footerBottom{
+  background-color: #000;
+  padding: 20px;
+  text-align: center;
+}
+
+.footerBottom p{
+  color: white;
+}
+
+.designer{
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+  margin: 0px 5px;
+}
+
+.btn {
+  font-family: inherit;
+  cursor: pointer;
+  outline: 0;
+  font-size: 1.05rem;
+}
+.text {
+  opacity: 0.8;
+}
+.title {
+  font-size: 2rem;
+  margin: 1rem;
+  padding: 2em;
+}
+
+#instructions {
+  margin: 1em;
+  padding: 1em;
+  text-align: center;
+  font-size: 20px;
+  border: 5px dashed #aa04aa;
+}
+
+#welcomeMessage {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.userInfo {
+  align-content: center;
+}
+
+.mainTable {
+  border: 5px solid black;
+  width: 80%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 2px 5px #aa04aa;
+}
+
+.mainTable th,
+.mainTable td {
+  text-align: left;
+  padding: 1em;
+}
+
+.mainTable td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 1em;
+}
+
+.mainTable button,
+#recipeResults button {
+  padding: 0.5em;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: #aa04aa;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.mainTable button:hover,
+#recipeResults button:hover {
+  animation: glow 1s infinite;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px #3498db; /* Initial shadow */
+  }
+  50% {
+    box-shadow: 0 0 20px #3498db, 0 0 30px #3498db; /* Intermediate shadow */
+  }
+  100% {
+    box-shadow: 0 0 10px #3498db; /* Final shadow */
+  }
+}
+
+
+
+  #recipeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  max-width: 1200px; /* Adjust this value as needed */
+  margin: 0 auto; /* centers container with equal margins on either side */
+}
+
+/* the below form is causing the error message to generate on the left of the section instead above. Trying to figure out how to keep this while moving error messages back to the top */
+form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5em;
+  position: relative;
+}
+
+label {
+  width: 70px;
+}
+
+#dataHeadings {
+  text-align: center;
+  font-size: 2em;
+}
+
+#recipeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+#recipeResults {
+  text-align: center;
+  line-height: 1.5;
+}
+
+#recipeResults > div {
+  margin-bottom: 20px; /* Adjust the value to set the desired spacing */
+  border: 1px solid black; /* Optionally, add borders for a boxed-off effect */
+  padding: 10px; /* Add padding for better spacing within the boxes */
+}
