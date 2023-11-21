@@ -158,9 +158,39 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+- Step 1: Enter your name and weight, then click "Save Info."
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+![Alt text](assets/images/Step1.png)
+
+- Step 2: Select an activity from the dropdown in order to start burning calories.
+
+![Alt text](assets/images/step2.png)
+
+- Step 3: Type a food or recipe (e.g., "chicken") to explore options in the recipe box.
+
+![!\[Alt text\](image.png)](assets/images/step3.png)
+
+- Step 4: After saving your info and choosing an activity, click "Submit Recipe."
+
+![!\[Alt text\](image.png)](assets/images/step4.png)
+
+- Step 5: Browse recipes and see how long it takes to burn off the calories with your activity.
+
+![!\[Alt text\](image.png)](assets/images/step5.png)
+
+- Step 6: Click "Ingredients" on a recipe to view its list.
+
+![!\[Alt text\](image.png)](assets/images/step6.png)
+
+- Step 7: Find detailed recipe instructions via the link in the ingredients list.
+
+![!\[Alt text\](image.png)](assets/images/step7.png)
+
+- Step 8: Enjoy cooking and staying active!
+
+![!\[Alt text\](image.png)](assets/images/step8.png)
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
